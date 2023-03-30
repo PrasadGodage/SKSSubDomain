@@ -28,6 +28,10 @@ if($_SESSION['username']=="")
 
     if(isset($_SESSION['username']))
     {
+      
+        // $orgDate = date('Y-m-d');
+        // $newDate = date("d-m-Y", strtotime($orgDate));  
+        // echo "New date format is: ".$newDate. " (MM-DD-YYYY)";
             // $sqlC= "SELECT sum(`StkQty`)As TotQty,sum(`PurchaseValue`)As TotPur,sum(`MRPValue`)As TotMRP,sum(`CashValue`)As TotCash,sum(`CreditValue`)As TotCredit,sum(`OutletValue`)As TotOut FROM Stock ";
 
             $sqlC= "SELECT sum(`totSales`)As TotSales,sum(`cashSales`)As CashSales,sum(`bankSales`)As BankSales,sum(`creditSales`)As CreditSales,sum(`totPurchase`)As TotPurchase,sum(`cashPurchase`)As CushPurchase,sum(`bankPurchase`)As BankPurchase,sum(`creditPurchase`)As CreditPurchase,
@@ -39,12 +43,7 @@ if($_SESSION['username']=="")
 
         if (mysqli_num_rows($result) == 1)
         {
-            // $TotQty=$rows['TotQty'];
-            // $TotPur=$rows['TotPur'];
-            // $TotMRP=$rows['TotMRP'];
-            // $TotCash=$rows['TotCash'];
-            // $TotCredit=$rows['TotCredit'];
-            // $TotOut=$rows['TotOut'];
+
 
             $TotSales=$rows['TotSales'];
             $CashSales=$rows['CashSales'];
@@ -100,6 +99,14 @@ if($_SESSION['username']=="")
        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> -->
 
+       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">  
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">  
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>   
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>   
+
+
+
     </head>
     <body>
    <section class="service sec-padd2" style="background-color: #203364;padding: 20px 0 0px;margin-bottom: 10px;">
@@ -112,6 +119,13 @@ if($_SESSION['username']=="")
         </div>
     </section> 
   
+<?php
+
+ $new_date = date('d-m-Y');
+ $query = "SELECT `TnDate`,`totSales`,`cashSales`,`bankSales`,`creditSales`,`totPurchase`,`cashPurchase`,`bankPurchase`,`creditPurchase`,`totReceipt`,`cashReceipt`,`bankReceipt`,`totPayment`,`cashPayment`,`bankPayment` FROM `daily_transaction` WHERE `TnDate`>='$new_date'";
+//   echo $new_date ;
+  $result = mysqli_query($con, $query);
+?>
 
     <section class="why-chooseus">
 
@@ -132,6 +146,7 @@ if($_SESSION['username']=="")
     {
         $new_date = date('Y-m-d', strtotime($_POST['date']));
 
+       
             // $sqlC= "SELECT sum(`StkQty`)As TotQty,sum(`PurchaseValue`)As TotPur,sum(`MRPValue`)As TotMRP,sum(`CashValue`)As TotCash,sum(`CreditValue`)As TotCredit,sum(`OutletValue`)As TotOut FROM Stock ";
 
             $sqlC= "SELECT sum(`totSales`)As TotSales,sum(`cashSales`)As CashSales,sum(`bankSales`)As BankSales,sum(`creditSales`)As CreditSales,sum(`totPurchase`)As TotPurchase,sum(`cashPurchase`)As CushPurchase,sum(`bankPurchase`)As BankPurchase,sum(`creditPurchase`)As CreditPurchase,
@@ -190,7 +205,8 @@ if($_SESSION['username']=="")
 
 <CENTER><h2><B>DAILY TRANSACTIONS DETAILS</B></h2></CENTER><BR><br>
 
-<div class="col-md-12 col-sm-12 col-xs-12 p-3">
+<div class="col-md-12 col-sm-12 col-xs-12 p-2">
+    
     <form class="form-horizontal" method="post">
         <div class="row">   
             <div class="form-horizontal">
@@ -201,16 +217,23 @@ if($_SESSION['username']=="")
                     </div>
 
                     <div class="col-md-1 col-xs-12">
-                    <label class="control-label" for="date"><h4><strong>Date:</strong></h4></label>
+                    <label class="control-label" for="date"><strong style="font-size: 17px;"> Date:</strong></label>
                     </div>
                     <div class="col-md-2 col-xs-12">
-                    <input type="date" id="date" name="date" class="form-gruop float-right">
-                    </div>
-                    <div class="col-md-2 col-xs-12">
-                    <input type="submit" class="btn btn-info mt-5" name="ok" value="SHOW TRANSACTION Data">      
+                    
+                    <!-- <input type="date" id="date" name="date" class="form-gruop float-right" data-date-format="DD MMMM YYYY" value="<?php echo $newDate;?>"> -->
+                    
+                    <input class="date form-control" style="width: 170px;font-size: 17px;" type="text" name="date" id="date" class="form-gruop float-right" value=<?php echo date("d-m-Y");?>> 
+                
+                   </div>
+                    <div class="col-md-3 col-xs-12">
+                    <input type="submit" class="btn btn-info mt-5" name="ok" value="SHOW TRANSACTION Data"> 
+                     
+                      <!-- <Button class="btn btn-primary mt-4" id="AddItem" onclick="getitemdata('3-15-2023')">SHOW TRANSACTION DATA</Button> -->
+
                     </div>
 
-                    <div class="col-md-3 col-xs-12">
+                    <div class="col-md-2 col-xs-12">
                     </div>
                 </div>
             </div>
@@ -222,10 +245,21 @@ if($_SESSION['username']=="")
            <input type="date" id="date" name="date" class="form-gruop float-right"><Br>
             <input type="submit" class="btn btn-info mt-5" name="ok" value="SHOW TRANSACTION Data">      
         </div>   -->
-        <br>
-        <br> 
-        <br>   
+       
             <!-- <CENTER><h2><B>DAILY TRANSACTIONS</B></h2></CENTER><BR><br> -->
+
+            <!-- <h3 class="text-center">Daily TRANSACTION FROM </h3><br> -->
+            <hr>
+            <?php 
+            if(isset($_POST['ok']))
+
+    {
+        $new_date = date('d-m-Y', strtotime($_POST['date']));
+    }
+    
+?>
+       <h3 class="text-center">DAILY TRANSACTION DETAILS OF DATE  <?php echo $new_date;?></h3>
+       <hr>
 
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-bottom:20px; margin-left:30px;">
 
@@ -261,16 +295,16 @@ if($_SESSION['username']=="")
                               <label class="control-label"><h4><strong>SALES</strong></h4></label>
                           </div>
                                 <div class="col-md-2 col-xs-12">
-                                <input id="TotSales" class="form-control" type="text" placeholder="" value="<?php echo $TotSales;?>">
+                                <input id="TotSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotSales;?>">
                                 </div>
                                 <div class="col-md-2 col-xs-12">
-                                    <input id="CashSales" class="form-control" type="text" placeholder="" value="<?php echo $CashSales;?>">
+                                    <input id="CashSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CashSales;?>">
                                 </div>
                                 <div class="col-md-2 col-xs-12">
-                                    <input id="BankSales" class="form-control" type="text" placeholder="" value="<?php echo $BankSales;?>">
+                                    <input id="BankSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankSales;?>">
                                 </div>
                                 <div class="col-md-2 col-xs-12">
-                                    <input id="CreditSales" class="form-control" type="text" placeholder="" value="<?php echo $CreditSales;?>">  
+                                    <input id="CreditSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CreditSales;?>">  
                                 </div> 
                       </div>
                   </div>
@@ -284,16 +318,16 @@ if($_SESSION['username']=="")
                               <label class="control-label"><h4><strong>PURCHASE</strong></h4></label>
                           </div>
                           <div class="col-md-2 col-xs-12">
-                              <input id="percentage" class="form-control" type="text" placeholder="" value="<?php echo $TotPurchase;?>">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotPurchase;?>">
                           </div>
                           <div class="col-md-2 col-xs-12">
-                              <input id="flat" class="form-control" type="text" placeholder="" value="<?php echo $CushPurchase;?>">
+                              <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CushPurchase;?>">
                           </div>
                           <div class="col-md-2 col-xs-12">
-                              <input id="percentage" class="form-control" type="text" placeholder="" value="<?php echo $BankPurchase;?>">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankPurchase;?>">
                           </div>
                           <div class="col-md-2 col-xs-12">
-                              <input id="flat" class="form-control" type="text" placeholder="" value="<?php echo $CreditPurchase;?>">
+                              <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CreditPurchase;?>">
                           </div>
                       </div>
                   </div>
@@ -306,13 +340,13 @@ if($_SESSION['username']=="")
                               <label class="control-label"><h4><strong>RECEIPT</strong></h4></label>
                           </div>
                           <div class="col-md-2 col-xs-12">
-                              <input id="percentage" class="form-control" type="text" placeholder="" value="<?php echo $TotReceipt;?>">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotReceipt;?>">
                           </div>
                           <div class="col-md-2 col-xs-12">
-                              <input id="flat" class="form-control" type="text" placeholder="" value="<?php echo $CashReceipt;?>">
+                              <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CashReceipt;?>">
                           </div>
                           <div class="col-md-2 col-xs-12">
-                              <input id="percentage" class="form-control" type="text" placeholder="" value="<?php echo $BankReceipt;?>">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankReceipt;?>">
                           </div>
                           <!-- <div class="col-md-2 col-xs-12">
                               <input id="flat" class="form-control" type="text" placeholder="" value="">
@@ -328,13 +362,13 @@ if($_SESSION['username']=="")
                               <label class="control-label"><h4><strong>PAYMENT</strong></h4></label>
                           </div>
                           <div class="col-md-2 col-xs-12">
-                              <input id="percentage" class="form-control" type="text" placeholder="" value="<?php echo $TotPayment;?>">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotPayment;?>">
                           </div>
                           <div class="col-md-2 col-xs-12">
-                              <input id="flat" class="form-control" type="text" placeholder="" value="<?php echo $CashPayment;?>">
+                              <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CashPayment;?>">
                           </div>
                           <div class="col-md-2 col-xs-12">
-                              <input id="percentage" class="form-control" type="text" placeholder="" value="<?php echo $BankPayment;?>">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankPayment;?>">
                           </div>
                           <!-- <div class="col-md-2 col-xs-12">
                               <input id="flat" class="form-control" type="text" placeholder="" value="">
@@ -349,6 +383,63 @@ if($_SESSION['username']=="")
 </div> 
 <!-- --------- Transaction Table end ------------------- -->
 </section>
+
+        <script type="text/javascript">  
+            $('.date').datepicker({  
+            format: 'dd-mm-yyyy'  
+            });  
+        </script>  
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+
+
+
+function getitemdata(TnDate)
+{
+
+alert(TnDate);
+  $.ajax({
+    
+        url: "ItemBackend.php",
+        type: "POST",
+        data: {
+            
+          // data from file : data to file 
+          TnDate:TnDate,
+        },
+        success: function(data) {
+          console.log(data);
+          // $('#dataholder').html(data);
+        var Date = JSON.parse(data);
+
+
+          //$('#TnDate').val(TnDate);
+          $('#TotSales').val(Date.TotSales);
+            $('#BankSales').val(Date.BankSales);
+            $('#CreditSales').val(Date.CreditSales);
+            $('#TotPurchase').val(Date.TotPurchase);
+            $('#CushPurchase').val(Date.CushPurchase);
+            $('#BankPurchase').val(Date.BankPurchase);
+            $('#SalesRate').val(Date.CreditPurchase); 
+            $('#TotReceipt').val(Date.TotReceipt);
+            $('#CashReceipt').val(Date.CashReceipt);  
+            $('#BankReceipt').val(Date.BankReceipt);
+            $('#TotPayment').val(Date.TotPayment); 
+            $('#CashPayment').val(Date.CashPayment);
+            $('#BankPayment').val(Date.BankPayment); 
+            // $('#updateItem').show();
+            $('#AddItem').hide();
+        },
+      });
+
+} -->
+
+    <!-- </script> -->
+
 
 </body>
 </html>

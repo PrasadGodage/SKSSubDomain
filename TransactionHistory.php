@@ -19,7 +19,13 @@ if($_SESSION['username']=="")
 
 <link href="cust_css/ourclient-style.css" rel="stylesheet"/>
 
-<body>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">  
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">  
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>   
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>   
+
+  </head>
    <section class="service sec-padd2" style="background-color: #203364;padding: 20px 0 0px;margin-bottom: 10px;">
         <div class="container">
             <div class="section-title center" style="margin-bottom: 20px;">
@@ -66,7 +72,7 @@ if($_SESSION['username']=="")
                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
 -->
-     </head>
+   
     
 
       <body>
@@ -91,16 +97,18 @@ if($_SESSION['username']=="")
                     </div>
 
                     <div class="col-md-2 col-xs-12">
-                    <label class="control-label" for="fromdate" style="Float:right;"><h4><strong>From Date:</strong></h4></label>
+                    <label class="control-label" for="fromdate" style="Float:right;"><strong style="font-size: 17px;">From Date:</strong></label>
                     </div>
                     <div class="col-md-2 col-xs-12">
-                    <input type="date" id="fromdate" name="fromdate" class="form-gruop"/>
+                    <!-- <input type="date" id="fromdate" name="fromdate" class="form-gruop"/> -->
+                    <input class="date form-control" style="width: 170px;font-size: 17px;" type="text" id="fromdate" name="fromdate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>  
                     </div>
                     <div class="col-md-2 col-xs-12">
-                    <label class="control-label float-right" for="todate" style="Float:right;"><h4><strong>To Date:</strong></h4></label>
+                    <label class="control-label float-right" for="todate" style="Float:right;"><strong style="font-size: 17px;">To Date:</strong></label>
                     </div>
                     <div class="col-md-2 col-xs-12">
-                    <input type="date" id="todate" name="todate" class="form-gruop"/>
+                    <!-- <input type="date" id="todate" name="todate" class="form-gruop"/> -->
+                    <input class="date form-control" style="width: 170px;font-size: 17px;" type="text" id="todate" name="todate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>  
                     </div>
                     <div class="col-md-2 col-xs-12">
                     <input type="submit" class="btn btn-info mt-5" name="ok" value="SHOW TRANSACTION Data" style="Float:left;">      
@@ -113,7 +121,7 @@ if($_SESSION['username']=="")
             </div>
         </div>    
         <br> 
-        <br>   
+       
         </form> 
         <?php
             if(isset($_POST['ok']))
@@ -127,6 +135,8 @@ if($_SESSION['username']=="")
                 $result = mysqli_query($con, $query);
             }
        ?>
+       <hr>
+       <h3 class="text-center">TRANSACTION HISTORY FROM <?php echo $fromTimestamp; ?> TO <?php echo $toTimestamp; ?></h3><br>
                 <div class="table-responsive">
 
                      <table id="customer_data" class="table table-striped table-bordered">
@@ -232,7 +242,11 @@ if($_SESSION['username']=="")
                 <a class="thm-btn" href="Dashboard_SKS.php" style="transition: none 0s ease 0s; line-height: 20px; border-width: 0px; margin: 0px; padding: 20px 38px; letter-spacing: 0px; font-weight: 400; font-size: 14px;">GOTO DASHBOARD</a>
            </div>
                
-           
+           <script type="text/javascript">  
+               $('.date').datepicker({  
+                    format: 'dd-mm-yyyy'  
+                    });  
+          </script>  
 
      </body>
 

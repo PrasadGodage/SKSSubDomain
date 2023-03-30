@@ -31,54 +31,99 @@ $result = mysqli_query($con,$query);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pie Charts</title>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
+       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+         google.charts.load('current', {'packages':['corechart']});
+         google.charts.setOnLoadCallback(drawChart);
 
-        var data = google.visualization.arrayToDataTable([
-          ['Date','Total Sales', 'Cash Sales', 'Bank Sales', 'Credit Sales'],
-         
-        <?php
-          
-            While($chart = mysqli_fetch_assoc($result))
-            {               
-                echo "['".$chart['TnDate']."',".$chart['totSales'].",".$chart['cashSales'].",".$chart['bankSales'].",".$chart['creditSales']."],";
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+             ['TnDate','totSales', 'cashSales', 'bankSales', 'creditSales'],
+
+            <?php
+
+            // $query = " SELECT `TnDate`, `totSales`, `cashSales`, `bankSales`, `creditSales` FROM `daily_transaction` ";
+            // $result = mysqli_query($con,$query);
+
+            // echo "$result";
+
+            while($data=mysqli_fetch_array($result)){
+                $TnDate = $data['TnDate'];
+                $totSales = $data['totSales'];
+                $cashSales = $data['cashSales'];
+                $bankSales = $data['bankSales'];
+                $creditSales = $data['creditSales'];
+                ?>
+
+                ['<?php echo $TnDate;?>',<?php echo $totSales;?>,<?php echo $cashSales;?>,<?php echo $bankSales;?>,<?php echo $creditSales;?>],
+                <?php
             }
-        ?>
+
+            ?>
+
+                    ]);
+
+                    var options = {
+                      title: 'Daily Sales Transaction',
+                      curveType: 'function',
+                      legend: { position: 'bottom' }
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+                    chart.draw(data, options);
+                  }
+      </script>
+
+           <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+           <script type="text/javascript">
+                  google.charts.load('current', {'packages':['corechart']});
+                  google.charts.setOnLoadCallback(drawChart);
+
+                  function drawChart() {
+
+                    var data = google.visualization.arrayToDataTable([
+                      ['Date','Total Sales', 'Cash Sales', 'Bank Sales', 'Credit Sales'],
+                    
+                    <?php
+                      
+                        While($chart = mysqli_fetch_assoc($result))
+                        {               
+                            echo "['".$chart['TnDate']."',".$chart['totSales'].",".$chart['cashSales'].",".$chart['bankSales'].",".$chart['creditSales']."],";
+                        }
+                    ?>
 
 
-        ]);
+                    ]);
 
-        var options = {
-          title: 'My Daily Transaction'
-        };
+                    var options = {
+                      title: 'My Daily Transaction'
+                    };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-        chart.draw(data, options);
-      }
-    </script>
+                    chart.draw(data, options);
+                  }
+                </script>
 
 
-<link href="cust_css/ourclient-style.css" rel="stylesheet"/>
+      <link href="cust_css/ourclient-style.css" rel="stylesheet"/>
 
-   <section class="service sec-padd2" style="background-color: #203364;padding: 20px 0 0px;margin-bottom: 10px;">
-        <div class="container">
-            <div class="section-title center" style="margin-bottom: 20px;">
-            <h3 style="color: white;"><span style="text-transform:uppercase;">  <?php echo  $_SESSION['ShopName'] ; ?></span></h3> 
-                <h5 style="font-weight:bolder;color: #d0d8f1;">SHETKARI KRUSHI SOFTWARE </h5>
-                
-            </div>              
-        </div>
-    </section> 
-<!--
+        <section class="service sec-padd2" style="background-color: #203364;padding: 20px 0 0px;margin-bottom: 10px;">
+              <div class="container">
+                  <div class="section-title center" style="margin-bottom: 20px;">
+                  <h3 style="color: white;"><span style="text-transform:uppercase;">  <?php echo  $_SESSION['ShopName'] ; ?></span></h3> 
+                      <h5 style="font-weight:bolder;color: #d0d8f1;">SHETKARI KRUSHI SOFTWARE </h5>
+                      
+                  </div>              
+              </div>
+          </section> 
 
-               <title>Outstanding</title>
 
-               <meta charset="utf-8">
+               <!-- <title>Outstanding</title> -->
+
+               <!-- <meta charset="utf-8">
                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -96,8 +141,8 @@ $result = mysqli_query($con,$query);
                <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+ -->
 
--->
      </head>
     
 
@@ -161,15 +206,44 @@ $result = mysqli_query($con,$query);
        ?>
 
 
-             <div class="container-fluid">
-                <div class="">
+             <!-- <div class="container-fluid"> -->
 
+             <div class="row">    
+                   <div class="col-lg-6 m-auto">
+                    <div class="card mt-3"> 
+                         <div class="card-header"> 
+                            <h3><b style="margin-left:70px; margin-top:50px; padding:20px;">Daily Transaction Sales Activities</b></h3>
+                         </div>
+                         <div class="card-body"> 
+                         <div id="curve_chart" style="width: 500px; height: 400px"></div>
+                         </div>
+                         <div class="card-footer">
+                            <a href="" style="margin-left:70px; margin-bottom:50px;">Visit For More Details</a>
+                         </div>
+                    </div>
+                   </div>
+                <!-- </div>  -->
+
+                 <!-- <div class="row">     -->
+                   <div class="col-lg-6 m-auto">
+                    <div class="card mt-3"> 
+                         <div class="card-header"> 
+                            <h3><b style="margin-left:70px; margin-top:50px; padding:20px;">Daily Transaction Sales Activities</b></h3>
+                         </div>
+                         <div class="card-body"> 
+                             <div id="piechart" style="width: 500px; height:400px;"></div>
+                         </div>
+                         <div class="card-footer">
+                            <a href="" style="margin-left:70px; margin-bottom:50px;">Visit For More Details</a>
+                         </div>
+                    </div>
+                   </div>
                 </div> 
-             </div>
+             <!-- </div> -->
 
 
 
-               <div id="piechart" style="width: 900px; height: 500px;"></div>
+               <!-- <div id="piechart" style="width: 900px; height: 500px;"></div> -->
 
                 <a class="thm-btn" href="Dashboard_SKS.php" style="transition: none 0s ease 0s; line-height: 20px; border-width: 0px; margin: 0px; padding: 20px 38px; letter-spacing: 0px; font-weight: 400; font-size: 14px;">GOTO DASHBOARD</a>
            </div>
