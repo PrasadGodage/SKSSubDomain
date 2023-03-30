@@ -1,31 +1,114 @@
 <?php
+
 include 'DB_config.php';
-mysqli_select_db($con, $_SESSION['DBName']);
+mysqli_select_db($con,  $_SESSION['DBName']);
+
+$TotSales=0;
+$CashSales=0;
+$BankSales=0;
+$CreditSales=0;
+$TotPurchase=0;
+$CushPurchase=0;
+$BankPurchase=0;
+$CreditPurchase=0;
+$TotReceipt=0;
+$CashReceipt=0;
+$BankReceipt=0;
+$TotPayment=0;
+$CashPayment=0;
+$BankPayment=0;
+
 if($_SESSION['username']=="")
 {
   header("location:../logout.php"); 
 }
+
+
+
+
+    if(isset($_SESSION['username']))
+    {
+      
+        // $orgDate = date('Y-m-d');
+        // $newDate = date("d-m-Y", strtotime($orgDate));  
+        // echo "New date format is: ".$newDate. " (MM-DD-YYYY)";
+            // $sqlC= "SELECT sum(`StkQty`)As TotQty,sum(`PurchaseValue`)As TotPur,sum(`MRPValue`)As TotMRP,sum(`CashValue`)As TotCash,sum(`CreditValue`)As TotCredit,sum(`OutletValue`)As TotOut FROM Stock ";
+
+            $sqlC= "SELECT sum(`totSales`)As TotSales,sum(`cashSales`)As CashSales,sum(`bankSales`)As BankSales,sum(`creditSales`)As CreditSales,sum(`totPurchase`)As TotPurchase,sum(`cashPurchase`)As CushPurchase,sum(`bankPurchase`)As BankPurchase,sum(`creditPurchase`)As CreditPurchase,
+            sum(`totReceipt`)As TotReceipt,sum(`cashReceipt`)As CashReceipt,sum(`bankReceipt`)AS BankReceipt,sum(`totPayment`)As TotPayment,sum(`cashPayment`)As CashPayment,sum(`bankPayment`)As BankPayment
+            FROM `daily_transaction` WHERE DATE(TnDate) = Date(Now())" ;
+
+        $result = mysqli_query($con,$sqlC);
+        $rows = mysqli_fetch_assoc($result);
+
+        if (mysqli_num_rows($result) == 1)
+        {
+
+
+            $TotSales=$rows['TotSales'];
+            $CashSales=$rows['CashSales'];
+            $BankSales=$rows['BankSales'];
+            $CreditSales=$rows['CreditSales'];
+            $TotPurchase=$rows['TotPurchase'];
+            $CushPurchase=$rows['CushPurchase'];
+            $BankPurchase=$rows['BankPurchase'];
+            $CreditPurchase=$rows['CreditPurchase'];
+            $TotReceipt=$rows['TotReceipt'];
+            $CashReceipt=$rows['CashReceipt'];
+            $BankReceipt=$rows['BankReceipt'];
+            $TotPayment=$rows['TotPayment'];
+            $CashPayment=$rows['CashPayment'];
+            $BankPayment=$rows['BankPayment'];
+
+        }
+        else
+        {
+            $TotSales=0;
+            $CashSales=0;
+            $BankSales=0;
+            $CreditSales=0;
+            $TotPurchase=0;
+            $CushPurchase=0;
+            $BankPurchase=0;
+            $CreditPurchase=0;
+            $TotReceipt=0;
+            $CashReceipt=0;
+            $BankReceipt=0;
+            $TotPayment=0;
+            $CashPayment=0;
+            $BankPayment=0;
+            
+        }
+    }
+
+
 ?>
-<!doctype html>
+
+<!DOCTYPE html>
 
 <html lang="en">
 
-     <head>
+    <head>
 
-     <meta charset="UTF-8">
+        <meta charset="UTF-8">
 
-<title>Soulsoft || SKS</title> 
-     <?php include './header1.php';?>
+        <title>Soulsoft || SKS</title> 
+       <?php include './header1.php';?>
 
-<link href="cust_css/ourclient-style.css" rel="stylesheet"/>
+       <link href="cust_css/ourclient-style.css" rel="stylesheet"/>
+       <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> -->
 
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">  
+       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">  
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">  
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>   
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>   
 
-  </head>
+
+
+    </head>
+    <body>
    <section class="service sec-padd2" style="background-color: #203364;padding: 20px 0 0px;margin-bottom: 10px;">
         <div class="container">
             <div class="section-title center" style="margin-bottom: 20px;">
@@ -35,370 +118,427 @@ if($_SESSION['username']=="")
             </div>              
         </div>
     </section> 
-
-
-          <?php
-
-               // $connect = mysqli_connect("localhost", "soulsoftin_root", "Prasad@321", "soulsoftin_SKS");
-               $fromTimestamp =  date('d-m-Y');
-               $toTimestamp = date('d-m-Y');
-                $query = "SELECT `TnDate`,`totSales`,`cashSales`,`bankSales`,`creditSales`,`totPurchase`,`cashPurchase`,`bankPurchase`,`creditPurchase`,`totReceipt`,`cashReceipt`,`bankReceipt`,`totPayment`,`cashPayment`,`bankPayment` FROM `daily_transaction` WHERE `TnDate`>='$fromTimestamp' AND `TnDate`<='$toTimestamp'";
-               //  echo  $fromTimestamp ;
-               $result = mysqli_query($con, $query);
-
-          ?>
-
-<!--
-
-               <title>Outstanding</title>
-
-               <meta charset="utf-8">
-               <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-               <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
-               <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-
-               <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-
-               <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-
-               <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
-
-               <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-               <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-               <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-               <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
--->
-   
-    
-
-      <body>
-
-           <br /><br />
-
-           <div class="container">
-                <!-- <h1 align="center">TRANSACTION HISTORY DETAILS</h3> -->
-
-                <CENTER><h2><B>TRANSACTION HISTORY DETAILS</B></h2></CENTER><BR><br>
-
-                <br />
-                <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">               -->
-              <!--  <input type="checkbox" Id="SelectAll"><label style=" font-size: 12px;margin-right: 10px;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;">SELECT ALL</label>-->
-              <form class="form-horizontal" style="margin-left:20px;" method="post">
-        <div class="row">   
-            <div class="form-horizontal">
-
-                <div class="form-group col-md-12 col-xs-12">
-
-                    <div class="col-md-1 col-xs-12">
-                    </div>
-
-                    <div class="col-md-2 col-xs-12">
-                    <label class="control-label" for="fromdate" style="Float:right;"><strong style="font-size: 17px;">From Date:</strong></label>
-                    </div>
-                    <div class="col-md-2 col-xs-12">
-                    <!-- <input type="date" id="fromdate" name="fromdate" class="form-gruop"/> -->
-                    <input class="date form-control" style="width: 170px;font-size: 17px;" type="text" id="fromdate" name="fromdate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>  
-                    </div>
-                    <div class="col-md-2 col-xs-12">
-                    <label class="control-label float-right" for="todate" style="Float:right;"><strong style="font-size: 17px;">To Date:</strong></label>
-                    </div>
-                    <div class="col-md-2 col-xs-12">
-                    <!-- <input type="date" id="todate" name="todate" class="form-gruop"/> -->
-                    <input class="date form-control" style="width: 170px;font-size: 17px;" type="text" id="todate" name="todate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>  
-                    </div>
-                    <div class="col-md-2 col-xs-12">
-                    <input type="submit" class="btn btn-info mt-5" name="ok" value="SHOW TRANSACTION Data" style="Float:left;">      
-                    </div>
-
-                    <div class="col-md-1 col-xs-12">
-                    </div>
-
-                </div>
-            </div>
-        </div>    
-        <br> 
-       
-        </form> 
-        <?php
-            if(isset($_POST['ok']))
-            {
-
-                $fromTimestamp = date('Y-m-d', strtotime($_POST['fromdate']));
-                $toTimestamp = date('Y-m-d', strtotime($_POST['todate']));
-
-                $query = "SELECT * FROM `daily_transaction` WHERE date(`TnDate`) BETWEEN  Date'$fromTimestamp' AND Date' $toTimestamp'";
-
-                $result = mysqli_query($con, $query);
-            }
-       ?>
-       <hr>
-       <h3 class="text-center">TRANSACTION HISTORY FROM <?php echo $fromTimestamp; ?> TO <?php echo $toTimestamp; ?></h3><br>
-                <div class="table-responsive">
-
-                     <table id="customer_data" class="table table-striped table-bordered">
-
-                          <thead>
-
-                                <tr>
-
-                                <th  style="padding-right:32px; padding-left:32px;">TnDate</th>
-
-                                    <th>TotalSales</th>
-
-                                    <th>CashSales</th>
-
-                                    <th>BankSales</th>
-
-                                    <th>CreditSales</th>
-
-                                    <th>TotalPurchase</th>
-
-                                    <th>CashPurchase</th>
-
-                                    <th>BankPurchase</th>
-
-                                    <th>CreditPurchase</th>
-
-                                    <th>TotalReceipt</th>
-
-                                    <th>CashReceipt</th>
-
-                                    <th>BankReceipt</th>
-                                    
-                                    <th>TotalPayment</th>
-
-                                    <th>CashPayment</th>
-
-                                    <th>BankPayment</th>                        
-
-                                </tr>
-
-                            </thead>
-
-
-          <?php
-
-                           $i=0;
-
-               while ($row = mysqli_fetch_array($result)) 
-               {
-            //         $msg="Dear ".$row["Name"]." Your current outstanding balance is ".$row["Balance"];          
-            //    $new = str_replace(' ', '%20', $msg);
-            
-               $orgDate = $row["TnDate"];
-               $newDate = date("d-m-Y", strtotime($orgDate));
-
-               echo '
-
-               <tr id="Table_Row">
-
-               <td>' . $newDate . '</td>
- 
-               <td>' . $row["totSales"] . '</td>
- 
-               <td>' . $row["cashSales"] . '</td>
- 
-               <td>' . $row["bankSales"] . '</td>
- 
-               <td>' . $row["creditSales"] . '</td>
- 
-               <td>' . $row["totPurchase"] . '</td>
- 
-               <td>' . $row["cashPurchase"] . '</td>
- 
-               <td>' . $row["bankPurchase"] . '</td>
- 
-               <td>' . $row["creditPurchase"] . '</td>
   
-               <td>' . $row["totReceipt"] . '</td>
- 
-               <td>' . $row["cashReceipt"] . '</td>
- 
-               <td>' . $row["bankReceipt"] . '</td>
- 
-               <td>' . $row["totPayment"] . '</td>
-               
-               <td>' . $row["cashPayment"] . '</td>
- 
-               <td>' . $row["bankPayment"] . '</td>
- 
-          </tr>
- 
+<?php
 
-                    ';
+ $new_date = date('d-m-Y');
+ $query = "SELECT `TnDate`,`totSales`,`cashSales`,`bankSales`,`creditSales`,`totPurchase`,`cashPurchase`,`bankPurchase`,`creditPurchase`,`totReceipt`,`cashReceipt`,`bankReceipt`,`totPayment`,`cashPayment`,`bankPayment` FROM `daily_transaction` WHERE `TnDate`>='$new_date'";
+//   echo $new_date ;
+  $result = mysqli_query($con, $query);
+?>
+
+    <section class="why-chooseus">
+
+     <div class="container">
+
+      <div class="row" style="margin-left:70px;">
+
+ <!-- Set The Date  -->
+       <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+       
+    </div>-->
+    <br>
+    <br>  
+<!---------- end ----------->
+<?php
+ 
+    if(isset($_POST['ok']))
+    {
+        $new_date = date('Y-m-d', strtotime($_POST['date']));
+
+       
+            // $sqlC= "SELECT sum(`StkQty`)As TotQty,sum(`PurchaseValue`)As TotPur,sum(`MRPValue`)As TotMRP,sum(`CashValue`)As TotCash,sum(`CreditValue`)As TotCredit,sum(`OutletValue`)As TotOut FROM Stock ";
+
+            $sqlC= "SELECT sum(`totSales`)As TotSales,sum(`cashSales`)As CashSales,sum(`bankSales`)As BankSales,sum(`creditSales`)As CreditSales,sum(`totPurchase`)As TotPurchase,sum(`cashPurchase`)As CushPurchase,sum(`bankPurchase`)As BankPurchase,sum(`creditPurchase`)As CreditPurchase,
+            sum(`totReceipt`)As TotReceipt,sum(`cashReceipt`)As CashReceipt,sum(`bankReceipt`)AS BankReceipt,sum(`totPayment`)As TotPayment,sum(`cashPayment`)As CashPayment,sum(`bankPayment`)As BankPayment
+            FROM `daily_transaction` WHERE TnDate='$new_date'" ;
+
+        $result = mysqli_query($con,$sqlC);
+        $rows = mysqli_fetch_assoc($result);
+
+        if (mysqli_num_rows($result) == 1)
+        {
+            // $TotQty=$rows['TotQty'];
+            // $TotPur=$rows['TotPur'];
+            // $TotMRP=$rows['TotMRP'];
+            // $TotCash=$rows['TotCash'];
+            // $TotCredit=$rows['TotCredit'];
+            // $TotOut=$rows['TotOut'];
+
+            $TotSales=$rows['TotSales'];
+            $CashSales=$rows['CashSales'];
+            $BankSales=$rows['BankSales'];
+            $CreditSales=$rows['CreditSales'];
+            $TotPurchase=$rows['TotPurchase'];
+            $CushPurchase=$rows['CushPurchase'];
+            $BankPurchase=$rows['BankPurchase'];
+            $CreditPurchase=$rows['CreditPurchase'];
+            $TotReceipt=$rows['TotReceipt'];
+            $CashReceipt=$rows['CashReceipt'];
+            $BankReceipt=$rows['BankReceipt'];
+            $TotPayment=$rows['TotPayment'];
+            $CashPayment=$rows['CashPayment'];
+            $BankPayment=$rows['BankPayment'];
+
+        }
+        else
+        {
+            $TotSales=0;
+            $CashSales=0;
+            $BankSales=0;
+            $CreditSales=0;
+            $TotPurchase=0;
+            $CushPurchase=0;
+            $BankPurchase=0;
+            $CreditPurchase=0;
+            $TotReceipt=0;
+            $CashReceipt=0;
+            $BankReceipt=0;
+            $TotPayment=0;
+            $CashPayment=0;
+            $BankPayment=0;
             
-            
-                   
-               }                   
-          ?>
+        }
+    }
 
-                     </table>
+?>
+<div class="col-md-12 col-sm-12 col-xs-12" style="padding:20px;">
 
+     <form class="form-horizontal" method="post">
+
+<CENTER><h2><B>DAILY TRANSACTIONS DETAILS</B></h2></CENTER><BR><br>
+
+   
+        <!-- <div class="row">   
+            <div class="form-horizontal"> -->
+
+                <div class="form-group" style="margin-left:30px;">
+
+                <!-- <div class="col-sm-1 col-xs-1">
+                    </div> -->
+
+                    <div class="col-sm-1 col-xs-2">
+                    <label class="control-label" for="date"><strong style="font-size: 17px;"> Date:</strong></label>
+                    </div>
+                    <div class="col-sm-2 col-xs-4">
+                    
+                    <!-- <input type="date" id="date" name="date" class="form-gruop float-right" data-date-format="DD MMMM YYYY" value="<?php echo $newDate;?>"> -->
+                    
+                    <input class="date form-control" style="width: 150px;font-size: 17px;" type="text" name="date" id="date" class="form-gruop float-right" value=<?php echo date("d-m-Y");?>> 
+                
+                   </div>
+                   <div class="col-sm-3 col-xs-4">
+                    <input type="submit" class="btn btn-info mt-5" name="ok" value="SHOW TRANSACTION Data"> 
+                     
+                      <!-- <Button class="btn btn-primary mt-4" id="AddItem" onclick="getitemdata('3-15-2023')">SHOW TRANSACTION DATA</Button> -->
+
+                    </div>
+                    <!-- <div class="col-sm-4 col-xs-3">
+                    </div> -->
                 </div>
-                <a class="thm-btn" href="Dashboard_SKS.php" style="transition: none 0s ease 0s; line-height: 20px; border-width: 0px; margin: 0px; padding: 20px 38px; letter-spacing: 0px; font-weight: 400; font-size: 14px;">GOTO DASHBOARD</a>
-           </div>
-               
-           <script type="text/javascript">  
-               $('.date').datepicker({  
-                    format: 'dd-mm-yyyy'  
-                    });  
-          </script>  
-
-     </body>
-
-
-     <script>      
-          //--------------------Script Used To Search Box-----------------------------
-        //   function myFunction() 
-        //   {
-        //        var input, filter, table, tr, td, i, txtValue;
-
-        //        input = document.getElementById("myInput");
-
-        //        filter = input.value.toUpperCase();
-
-        //        table = document.getElementById("customer_data");
-
-        //        tr = table.getElementsByTagName("tr");
-
-        //        for (i = 1; i < tr.length; i++) 
-        //        {
-
-        //             td = tr[i].getElementsByTagName("td")[1];
-        //             if (td) 
-        //             {
-        //                  txtValue = td.textContent || td.innerText;
-
-        //                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
-
-        //                  tr[i].style.display = "";
-
-        //                  } else { tr[i].style.display = "none";}
-
-        //             } 
-        //        } 
-        //   }
-
-
-          //------------------------Sript To used Select All----------------------------
-
-          $(document).ready(function () {
-
-               $('#SelectAll').change(function () {
-
-               if (this.checked)
-
-                         {
-
-                              $('.Chkbox').prop('checked', true);
-
-                         }else{
-
-                              $('.Chkbox').prop('checked', false);
-
-                         }
-
-               });
-
-          });
-
-         
-
-     </script>
-
-     <style>
-
-          #SelectAll{
-
-          font-size: 12px;
-
-          margin-right: 10px;
-
-          margin-left: 10px;
-
-          margin-top: 10px;
-
-          margin-bottom: 10px;
-
-          }
-
-
-
-          #customer_data {
-
-          border-collapse: collapse;
-
-          width: 100%;
-
-          border: 1px solid #ddd;
-
-          font-size: 14px;
-
-          }
-
-
-
-          #customer_data th, #customer_data td {
-
-          text-align: left;
-
-          padding: 12px;
-
-          }
-
-     
-
-          #customer_data tr {
-
-          border-bottom: 1px solid #ddd;
-
-          }
-
-
-
-          #customer_data tr.header, #customer_data tr:hover {
-
-          background-color: #f1f1f1;
-
-          }
-
-
-
-          /* #myInput {
-
-          background-image: url('/css/searchicon.png');
-
-          background-position: 10px 10px;
-
-          background-repeat: no-repeat;
-
-          width: 100%;
-
-          font-size: 12px;
-
-          padding: 12px 20px 12px 40px;
-
-          border: 1px solid #ddd;
-
-          margin-bottom: 12px;
-
-          } */
-
-     </style>
-
-
-</html>
-<div class="border"></div>
-
+            <!-- </div>
+        </div>     -->
+
+        <!-- <div class="form-gruop float-right" style="margin-left:800px;">
+
+          <label for="date"><h4><strong>Date:</strong></h4></label>
+           <input type="date" id="date" name="date" class="form-gruop float-right"><Br>
+            <input type="submit" class="btn btn-info mt-5" name="ok" value="SHOW TRANSACTION Data">      
+        </div>   -->
+       
+            <!-- <CENTER><h2><B>DAILY TRANSACTIONS</B></h2></CENTER><BR><br> -->
+
+            <!-- <h3 class="text-center">Daily TRANSACTION FROM </h3><br> -->
+            <hr>
+            <?php 
+            if(isset($_POST['ok']))
+
+    {
+        $new_date = date('d-m-Y', strtotime($_POST['date']));
+    }
+    
+?>
+       <h3 class="text-center">DAILY TRANSACTION DETAILS OF DATE  <?php echo $new_date;?></h3>
+       <hr>
+
+            <div class="btn-toolbar text-center" role="toolbar" aria-label="Toolbar with button groups" style="margin-bottom:20px;">
+
+              <!-- <div class="col-sm-1 col-xs-4">
+                </div> -->
+              
+               <div class="col-sm-2 col-xs-3 text-center">
+               <!-- <div class="btn-group" role="group" aria-label="First group">
+                <label class="control-label"><B><h4><strong>TOTAL</strong></h4></B></a></label> 
+                </div> -->
+              </div>
+               <div class="col-sm-2 col-xs-3 text-center">
+                <div class="btn-group" role="group" aria-label="Second group">
+                <label class="control-label"><B><h4><strong>CASH</strong></h4></B></a></label>
+                </div>
+               </div>
+               <div class="col-sm-2 col-xs-3 text-center">
+                <div class="btn-group" role="group" aria-label="Third group">
+                <label class="control-label"><B><h4><strong>BANK</strong></h4></B></a></label>
+                </div>
+               </div>
+              <div class="col-sm-2 col-xs-3 text-center">
+                <div class="btn-group" role="group" aria-label="Third group">
+                 <label class="control-label"><B><h4><strong>CREDIT</strong></h4></B></a></label>
+                </div>
+              </div>
+              <div class="col-sm-2 col-xs-3">
+                              
+              </div>
+            </div>
+      
+            <div class="row">
+                  <div class="form-horizontal">
+                      <div class="form-group">
+                          <div class="col-sm-2 col-xs-3">
+                              <label class="control-label"><h4><strong>SALES</strong></h4></label>
+                          </div>
+                                <!-- <div class="col-sm-2 col-xs-3">
+                                <input id="TotSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotSales;?>">
+                                </div> -->
+                                <div class="col-sm-2 col-xs-3">
+                                    <input id="CashSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CashSales;?>">
+                                </div>
+                                <div class="col-sm-2 col-xs-3">
+                                    <input id="BankSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankSales;?>">
+                                </div>
+                                <div class="col-sm-2 col-xs-3">
+                                    <input id="CreditSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CreditSales;?>">  
+                                </div> 
+                                <div class="col-sm-2">
+                              
+                              </div>
+                      </div>
+                  </div>
+            </div>
             
 
+            <div class="row">
+                  <div class="form-horizontal">
+                      <div class="form-group">
+                      <div class="col-sm-2 col-xs-3">
+                              <label class="control-label"><h4><strong>PURCHASE</strong></h4></label>
+                          </div>
+                          <!-- <div class="col-sm-2 col-xs-3">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotPurchase;?>">
+                          </div> -->
+                          <div class="col-sm-2 col-xs-3">
+                              <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CushPurchase;?>">
+                          </div>
+                          <div class="col-sm-2 col-xs-3">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankPurchase;?>">
+                          </div>
+                          <div class="col-sm-2 col-xs-3">
+                              <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CreditPurchase;?>">
+                          </div>
+                          <div class="col-sm-2 col-xs-3">
+                              
+                              </div>
+                      </div>
+                  </div>
+            </div>
 
-<?php include './footer1.php'; ?>
-<script>        
-        document.getElementById('fromdate').valueAsDate = new Date();
-        document.getElementById('todate').valueAsDate = new Date();
-</script>
+            <div class="row">
+                  <div class="form-horizontal">
+                      <div class="form-group">
+                         <div class="col-sm-2 col-xs-3">
+                              <label class="control-label"><h4><strong>RECEIPT</strong></h4></label>
+                          </div>
+                          <!-- <div class="col-sm-2 col-xs-3">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotReceipt;?>">
+                          </div> -->
+                          <div class="col-sm-2 col-xs-3">
+                              <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CashReceipt;?>">
+                          </div>
+                          <div class="col-sm-2 col-xs-3">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankReceipt;?>">
+                          </div>
+                          <div class="col-sm-4 col-xs-3">
+                              
+                          </div>
+                      </div>
+                  </div>
+            </div>
+
+            <div class="row">
+                  <div class="form-horizontal">
+                      <div class="form-group">
+                          <div class="col-sm-2 col-xs-3">
+                              <label class="control-label"><h4><strong>PAYMENT</strong></h4></label>
+                          </div>
+                          <!-- <div class="col-sm-2 col-xs-3">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotPayment;?>">
+                          </div> -->
+                          <div class="col-sm-2 col-xs-3">
+                              <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CashPayment;?>">
+                          </div>
+                          <div class="col-sm-2 col-xs-3">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankPayment;?>">
+                          </div>
+                          <div class="col-sm-4 col-xs-3">
+    
+                          </div>
+                      </div>
+                  </div>
+            </div>
+<br>
+            <div class="row">
+                  <div class="form-horizontal">
+                      <div class="form-group">
+
+                        <div class="col-sm-4 col-xs-3 text-center">
+                            <div class="btn-group" role="group" aria-label="First group">
+                                <label class="control-label"><B><h4><strong>TOTAL</strong></h4></B></a></label> 
+                             </div>
+                        </div>
+
+                      </div>
+                  </div>
+            </div>
+
+            <br>
+            <div class="row">
+                  <div class="form-horizontal">
+                      <div class="form-group">
+
+                          <div class="col-sm-3 col-xs-3">
+                              <label class="control-label"><h4><strong>SALES</strong></h4></label>
+                          </div>
+                          <div class="col-sm-3 col-xs-3">
+                                <input id="TotSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotSales;?>">
+                          </div>
+
+                      </div>
+                  </div>
+            </div>
+
+            <br>
+            <div class="row">
+                  <div class="form-horizontal">
+                      <div class="form-group">
+
+                        <div class="col-sm-3 col-xs-3">
+                              <label class="control-label"><h4><strong>PURCHASE</strong></h4></label>
+                        </div>
+                        <div class="col-sm-3 col-xs-3">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotPurchase;?>">
+                        </div>
+
+                      </div>
+                  </div>
+            </div>
+
+            <br>
+            <div class="row">
+                  <div class="form-horizontal">
+                      <div class="form-group">
+
+                        <div class="col-sm-3 col-xs-3">
+                              <label class="control-label"><h4><strong>RECEIPT</strong></h4></label>
+                        </div>
+                        <div class="col-sm-3 col-xs-3">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotReceipt;?>">
+                        </div>
+
+                      </div>
+                  </div>
+            </div>
+
+            <br>
+            <div class="row">
+                  <div class="form-horizontal">
+                      <div class="form-group">
+
+                        <div class="col-sm-3 col-xs-3">
+                              <label class="control-label"><h4><strong>PAYMENT</strong></h4></label>
+                        </div>
+                        <div class="col-sm-3 col-xs-3">
+                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotPayment;?>">
+                        </div>
+
+                      </div>
+                  </div>
+            </div>
+
+    </form>
+
+</div> 
+<!-- --------- Transaction Table end ------------------- -->
+</section>
+
+        <script type="text/javascript">  
+            $('.date').datepicker({  
+            format: 'dd-mm-yyyy'  
+            });  
+        </script>  
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+
+
+
+function getitemdata(TnDate)
+{
+
+alert(TnDate);
+  $.ajax({
+    
+        url: "ItemBackend.php",
+        type: "POST",
+        data: {
+            
+          // data from file : data to file 
+          TnDate:TnDate,
+        },
+        success: function(data) {
+          console.log(data);
+          // $('#dataholder').html(data);
+        var Date = JSON.parse(data);
+
+
+          //$('#TnDate').val(TnDate);
+          $('#TotSales').val(Date.TotSales);
+            $('#BankSales').val(Date.BankSales);
+            $('#CreditSales').val(Date.CreditSales);
+            $('#TotPurchase').val(Date.TotPurchase);
+            $('#CushPurchase').val(Date.CushPurchase);
+            $('#BankPurchase').val(Date.BankPurchase);
+            $('#SalesRate').val(Date.CreditPurchase); 
+            $('#TotReceipt').val(Date.TotReceipt);
+            $('#CashReceipt').val(Date.CashReceipt);  
+            $('#BankReceipt').val(Date.BankReceipt);
+            $('#TotPayment').val(Date.TotPayment); 
+            $('#CashPayment').val(Date.CashPayment);
+            $('#BankPayment').val(Date.BankPayment); 
+            // $('#updateItem').show();
+            $('#AddItem').hide();
+        },
+      });
+
+} -->
+
+    <!-- </script> -->
+
+
+</body>
+</html>
+
+            <div class="border"></div>
+
+            <?php include './footer1.php'; ?>
+
+            <script>        
+                 document.getElementById('date').valueAsDate = new Date();
+
+                //         function myFunction() {
+                //   alert("Hii");
+                // }
+            </script>
+    
