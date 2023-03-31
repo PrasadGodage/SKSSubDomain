@@ -127,319 +127,404 @@ if($_SESSION['username']=="")
   $result = mysqli_query($con, $query);
 ?>
 
-    <section class="why-chooseus">
+<section class="why-chooseus">
 
-     <div class="container">
+    <div class="container">
 
-      <div class="row" style="margin-left:70px;">
+        <div class="row">
 
- <!-- Set The Date  -->
-       <!-- <div class="col-md-12 col-sm-12 col-xs-12">
-       
-    </div>-->
-    <br>
-    <br>  
-<!---------- end ----------->
-<?php
- 
-    if(isset($_POST['ok']))
-    {
-        $new_date = date('Y-m-d', strtotime($_POST['date']));
-
-       
-            // $sqlC= "SELECT sum(`StkQty`)As TotQty,sum(`PurchaseValue`)As TotPur,sum(`MRPValue`)As TotMRP,sum(`CashValue`)As TotCash,sum(`CreditValue`)As TotCredit,sum(`OutletValue`)As TotOut FROM Stock ";
-
-            $sqlC= "SELECT sum(`totSales`)As TotSales,sum(`cashSales`)As CashSales,sum(`bankSales`)As BankSales,sum(`creditSales`)As CreditSales,sum(`totPurchase`)As TotPurchase,sum(`cashPurchase`)As CushPurchase,sum(`bankPurchase`)As BankPurchase,sum(`creditPurchase`)As CreditPurchase,
-            sum(`totReceipt`)As TotReceipt,sum(`cashReceipt`)As CashReceipt,sum(`bankReceipt`)AS BankReceipt,sum(`totPayment`)As TotPayment,sum(`cashPayment`)As CashPayment,sum(`bankPayment`)As BankPayment
-            FROM `daily_transaction` WHERE TnDate='$new_date'" ;
-
-        $result = mysqli_query($con,$sqlC);
-        $rows = mysqli_fetch_assoc($result);
-
-        if (mysqli_num_rows($result) == 1)
-        {
-            // $TotQty=$rows['TotQty'];
-            // $TotPur=$rows['TotPur'];
-            // $TotMRP=$rows['TotMRP'];
-            // $TotCash=$rows['TotCash'];
-            // $TotCredit=$rows['TotCredit'];
-            // $TotOut=$rows['TotOut'];
-
-            $TotSales=$rows['TotSales'];
-            $CashSales=$rows['CashSales'];
-            $BankSales=$rows['BankSales'];
-            $CreditSales=$rows['CreditSales'];
-            $TotPurchase=$rows['TotPurchase'];
-            $CushPurchase=$rows['CushPurchase'];
-            $BankPurchase=$rows['BankPurchase'];
-            $CreditPurchase=$rows['CreditPurchase'];
-            $TotReceipt=$rows['TotReceipt'];
-            $CashReceipt=$rows['CashReceipt'];
-            $BankReceipt=$rows['BankReceipt'];
-            $TotPayment=$rows['TotPayment'];
-            $CashPayment=$rows['CashPayment'];
-            $BankPayment=$rows['BankPayment'];
-
-        }
-        else
-        {
-            $TotSales=0;
-            $CashSales=0;
-            $BankSales=0;
-            $CreditSales=0;
-            $TotPurchase=0;
-            $CushPurchase=0;
-            $BankPurchase=0;
-            $CreditPurchase=0;
-            $TotReceipt=0;
-            $CashReceipt=0;
-            $BankReceipt=0;
-            $TotPayment=0;
-            $CashPayment=0;
-            $BankPayment=0;
+                <!-- Set The Date  -->
+                    <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+                    
+                    </div>-->
+                    <br>
+                    <br>  
+                <!---------- end ----------->
+            <?php
             
-        }
-    }
+                if(isset($_POST['ok']))
+                {
+                    $new_date = date('Y-m-d', strtotime($_POST['date']));
 
-?>
-
-<CENTER><h2><B>DAILY TRANSACTIONS DETAILS</B></h2></CENTER><BR><br>
-
-<div class="col-md-12 col-sm-12 col-xs-12 p-2">
-    
-    <form class="form-horizontal" method="post">
-        <div class="row">   
-            <div class="form-horizontal">
-
-                <div class="form-group col-md-12 col-xs-12">
-
-                    <div class="col-md-4 col-xs-12">
-                    </div>
-
-                    <div class="col-md-1 col-xs-12">
-                    <label class="control-label" for="date"><strong style="font-size: 17px;"> Date:</strong></label>
-                    </div>
-                    <div class="col-md-2 col-xs-12">
-                    
-                    <!-- <input type="date" id="date" name="date" class="form-gruop float-right" data-date-format="DD MMMM YYYY" value="<?php echo $newDate;?>"> -->
-                    
-                    <input class="date form-control" style="width: 170px;font-size: 17px;" type="text" name="date" id="date" class="form-gruop float-right" value=<?php echo date("d-m-Y");?>> 
                 
-                   </div>
-                    <div class="col-md-3 col-xs-12">
-                    <input type="submit" class="btn btn-info mt-5" name="ok" value="SHOW TRANSACTION Data"> 
-                     
-                      <!-- <Button class="btn btn-primary mt-4" id="AddItem" onclick="getitemdata('3-15-2023')">SHOW TRANSACTION DATA</Button> -->
+                        // $sqlC= "SELECT sum(`StkQty`)As TotQty,sum(`PurchaseValue`)As TotPur,sum(`MRPValue`)As TotMRP,sum(`CashValue`)As TotCash,sum(`CreditValue`)As TotCredit,sum(`OutletValue`)As TotOut FROM Stock ";
 
-                    </div>
+                        $sqlC= "SELECT sum(`totSales`)As TotSales,sum(`cashSales`)As CashSales,sum(`bankSales`)As BankSales,sum(`creditSales`)As CreditSales,sum(`totPurchase`)As TotPurchase,sum(`cashPurchase`)As CushPurchase,sum(`bankPurchase`)As BankPurchase,sum(`creditPurchase`)As CreditPurchase,
+                        sum(`totReceipt`)As TotReceipt,sum(`cashReceipt`)As CashReceipt,sum(`bankReceipt`)AS BankReceipt,sum(`totPayment`)As TotPayment,sum(`cashPayment`)As CashPayment,sum(`bankPayment`)As BankPayment
+                        FROM `daily_transaction` WHERE TnDate='$new_date'" ;
 
-                    <div class="col-md-2 col-xs-12">
-                    </div>
-                </div>
-            </div>
-        </div>    
+                    $result = mysqli_query($con,$sqlC);
+                    $rows = mysqli_fetch_assoc($result);
 
-        <!-- <div class="form-gruop float-right" style="margin-left:800px;">
+                    if (mysqli_num_rows($result) == 1)
+                    {
+                        // $TotQty=$rows['TotQty'];
+                        // $TotPur=$rows['TotPur'];
+                        // $TotMRP=$rows['TotMRP'];
+                        // $TotCash=$rows['TotCash'];
+                        // $TotCredit=$rows['TotCredit'];
+                        // $TotOut=$rows['TotOut'];
 
-          <label for="date"><h4><strong>Date:</strong></h4></label>
-           <input type="date" id="date" name="date" class="form-gruop float-right"><Br>
-            <input type="submit" class="btn btn-info mt-5" name="ok" value="SHOW TRANSACTION Data">      
-        </div>   -->
-       
-            <!-- <CENTER><h2><B>DAILY TRANSACTIONS</B></h2></CENTER><BR><br> -->
+                        $TotSales=$rows['TotSales'];
+                        $CashSales=$rows['CashSales'];
+                        $BankSales=$rows['BankSales'];
+                        $CreditSales=$rows['CreditSales'];
+                        $TotPurchase=$rows['TotPurchase'];
+                        $CushPurchase=$rows['CushPurchase'];
+                        $BankPurchase=$rows['BankPurchase'];
+                        $CreditPurchase=$rows['CreditPurchase'];
+                        $TotReceipt=$rows['TotReceipt'];
+                        $CashReceipt=$rows['CashReceipt'];
+                        $BankReceipt=$rows['BankReceipt'];
+                        $TotPayment=$rows['TotPayment'];
+                        $CashPayment=$rows['CashPayment'];
+                        $BankPayment=$rows['BankPayment'];
 
-            <!-- <h3 class="text-center">Daily TRANSACTION FROM </h3><br> -->
-            <hr>
-            <?php 
-            if(isset($_POST['ok']))
+                    }
+                    else
+                    {
+                        $TotSales=0;
+                        $CashSales=0;
+                        $BankSales=0;
+                        $CreditSales=0;
+                        $TotPurchase=0;
+                        $CushPurchase=0;
+                        $BankPurchase=0;
+                        $CreditPurchase=0;
+                        $TotReceipt=0;
+                        $CashReceipt=0;
+                        $BankReceipt=0;
+                        $TotPayment=0;
+                        $CashPayment=0;
+                        $BankPayment=0;
+                        
+                    }
+                }
 
-    {
-        $new_date = date('d-m-Y', strtotime($_POST['date']));
-    }
-    
-?>
-       <h3 class="text-center">DAILY TRANSACTION DETAILS OF DATE  <?php echo $new_date;?></h3>
-       <hr>
+            ?>
+            <div class="col-md-12 col-sm-12 col-xs-12">
 
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-bottom:20px; margin-left:30px;">
+                <form class="form-horizontal" method="post" style="padding-left:30px; padding-right:30px;">
 
-              <div class="col-md-2 col-xs-12">
-                </div>
-              
-              <div class="col-md-2 col-xs-12 text-center">
-                <div class="btn-group" role="group" aria-label="First group">
-                <label class="control-label"><B><h4><strong>TOTAL</strong></h4></B></a></label> 
-                </div>
-              </div>
-               <div class="col-md-2 col-xs-12 text-center">
-                <div class="btn-group" role="group" aria-label="Second group">
-                <label class="control-label"><B><h4><strong>CASH</strong></h4></B></a></label>
-                </div>
-               </div>
-               <div class="col-md-2 col-xs-12 text-center">
-                <div class="btn-group" role="group" aria-label="Third group">
-                <label class="control-label"><B><h4><strong>BANK</strong></h4></B></a></label>
-                </div>
-               </div>
-              <div class="col-md-2 col-xs-12 text-center">
-                <div class="btn-group" role="group" aria-label="Third group">
-                 <label class="control-label"><B><h4><strong>CREDIT</strong></h4></B></a></label>
-                </div>
-              </div>
-            </div>
-      
-            <div class="row">
-                  <div class="form-horizontal">
-                      <div class="form-group col-md-12 col-xs-12">
-                          <div class="col-md-2 col-xs-12">
-                              <label class="control-label"><h4><strong>SALES</strong></h4></label>
-                          </div>
-                                <div class="col-md-2 col-xs-12">
-                                <input id="TotSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotSales;?>">
-                                </div>
-                                <div class="col-md-2 col-xs-12">
-                                    <input id="CashSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CashSales;?>">
-                                </div>
-                                <div class="col-md-2 col-xs-12">
-                                    <input id="BankSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankSales;?>">
-                                </div>
-                                <div class="col-md-2 col-xs-12">
-                                    <input id="CreditSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CreditSales;?>">  
-                                </div> 
-                      </div>
-                  </div>
-            </div>
+                    <CENTER><h2><B>DAILY TRANSACTIONS DETAILS</B></h2></CENTER><BR>
+
             
+                        <!-- <div class="row">   
+                            <div class="form-horizontal"> -->
 
-            <div class="row">
-                  <div class="form-horizontal">
-                      <div class="form-group col-md-12 col-xs-12">
-                          <div class="col-md-2 col-xs-12">
-                              <label class="control-label"><h4><strong>PURCHASE</strong></h4></label>
-                          </div>
-                          <div class="col-md-2 col-xs-12">
-                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotPurchase;?>">
-                          </div>
-                          <div class="col-md-2 col-xs-12">
-                              <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CushPurchase;?>">
-                          </div>
-                          <div class="col-md-2 col-xs-12">
-                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankPurchase;?>">
-                          </div>
-                          <div class="col-md-2 col-xs-12">
-                              <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CreditPurchase;?>">
-                          </div>
-                      </div>
-                  </div>
-            </div>
+                            <div class="form-group" style="margin-left:70px;">
 
-            <div class="row">
-                  <div class="form-horizontal">
-                      <div class="form-group col-md-12 col-xs-12">
-                          <div class="col-md-2 col-xs-12">
-                              <label class="control-label"><h4><strong>RECEIPT</strong></h4></label>
-                          </div>
-                          <div class="col-md-2 col-xs-12">
-                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotReceipt;?>">
-                          </div>
-                          <div class="col-md-2 col-xs-12">
-                              <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CashReceipt;?>">
-                          </div>
-                          <div class="col-md-2 col-xs-12">
-                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankReceipt;?>">
-                          </div>
-                          <!-- <div class="col-md-2 col-xs-12">
-                              <input id="flat" class="form-control" type="text" placeholder="" value="">
-                          </div> -->
-                      </div>
-                  </div>
-            </div>
+                                <!-- <div class="col-sm-1 col-xs-1">
+                                    </div> -->
 
-            <div class="row">
-                  <div class="form-horizontal">
-                      <div class="form-group col-md-12 col-xs-12">
-                          <div class="col-md-2 col-xs-12">
-                              <label class="control-label"><h4><strong>PAYMENT</strong></h4></label>
-                          </div>
-                          <div class="col-md-2 col-xs-12">
-                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotPayment;?>">
-                          </div>
-                          <div class="col-md-2 col-xs-12">
-                              <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CashPayment;?>">
-                          </div>
-                          <div class="col-md-2 col-xs-12">
-                              <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankPayment;?>">
-                          </div>
-                          <!-- <div class="col-md-2 col-xs-12">
-                              <input id="flat" class="form-control" type="text" placeholder="" value="">
-                          </div> -->
-                      </div>
-                  </div>
-            </div>
+                                <div class="col-sm-1 col-xs-2" style="padding:7px;">
+                                <label class="control-label" for="date"><strong style="font-size: 17px;"> Date:</strong></label>
+                                </div>
+                                <div class="col-sm-2 col-xs-8" style="padding:7px;">
+                                
+                                <!-- <input type="date" id="date" name="date" class="form-gruop float-right" data-date-format="DD MMMM YYYY" value="<?php echo $newDate;?>"> -->
+                                
+                                <input class="date form-control" style="width: 150px;font-size: 17px;" type="text" name="date" id="date" class="form-gruop float-right" value=<?php echo date("d-m-Y");?>> 
+                            
+                            </div>
 
+                            <!-- <div class="col-xs-3"></div> -->
 
-    </form>
+                            <div class="col-sm-3 col-xs-4" style="margin-top:7px;">
+                                <input type="submit" class="btn btn-info mt-5" name="ok" value="SHOW TRANSACTION DATA"> 
+                                
+                                <!-- <Button class="btn btn-primary mt-4" id="AddItem" onclick="getitemdata('3-15-2023')">SHOW TRANSACTION DATA</Button> -->
 
-</div> 
-<!-- --------- Transaction Table end ------------------- -->
+                                </div>
+                                <!-- <div class="col-sm-4 col-xs-3">
+                                </div> -->
+                            </div>
+                            <!-- </div>
+                        </div>     -->
+
+                        <!-- <div class="form-gruop float-right" style="margin-left:800px;">
+
+                        <label for="date"><h4><strong>Date:</strong></h4></label>
+                        <input type="date" id="date" name="date" class="form-gruop float-right"><Br>
+                            <input type="submit" class="btn btn-info mt-5" name="ok" value="SHOW TRANSACTION Data">      
+                        </div>   -->
+                
+                        <!-- <CENTER><h2><B>DAILY TRANSACTIONS</B></h2></CENTER><BR><br> -->
+
+                        <!-- <h3 class="text-center">Daily TRANSACTION FROM </h3><br> -->
+                      
+
+                        <?php 
+                        if(isset($_POST['ok']))
+
+                            {
+                                $new_date = date('d-m-Y', strtotime($_POST['date']));
+                            }
+                
+                        ?>
+                    <hr>
+                    <h3 class="text-center">DAILY TRANSACTION DETAILS OF DATE  <?php echo $new_date;?></h3>
+                        <hr>
+
+                    <div class="btn-toolbar text-center" role="toolbar" aria-label="Toolbar with button groups" style="padding:10px;">
+
+                        <!-- <div class="col-sm-1 col-xs-4">
+                            </div> -->
+                        
+                        <div class="col-sm-2 col-xs-3 text-center">
+                        <!-- <div class="btn-group" role="group" aria-label="First group">
+                            <label class="control-label"><B><h4><strong>TOTAL</strong></h4></B></a></label> 
+                            </div> -->
+                        </div>
+                        <div class="col-sm-2 col-xs-3 text-center">
+                            <div class="btn-group" role="group" aria-label="Second group">
+                            <label class="control-label"><B><h4><strong>CASH</strong></h4></B></a></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-3 text-center">
+                            <div class="btn-group" role="group" aria-label="Third group">
+                            <label class="control-label"><B><h4><strong>BANK</strong></h4></B></a></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-3 text-center">
+                            <div class="btn-group" role="group" aria-label="Third group">
+                            <label class="control-label"><B><h4><strong>CREDIT</strong></h4></B></a></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-3">
+                                        
+                        </div>
+                        </div>
+                
+                        <div class="row">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-2 col-xs-3">
+                                        <label class="control-label"><h4><strong>SALES</strong></h4></label>
+                                    </div>
+                                            <!-- <div class="col-sm-2 col-xs-3">
+                                            <input id="TotSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotSales;?>">
+                                            </div> -->
+                                            <div class="col-sm-2 col-xs-3">
+                                                <input id="CashSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CashSales;?>">
+                                            </div>
+                                            <div class="col-sm-2 col-xs-3">
+                                                <input id="BankSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankSales;?>">
+                                            </div>
+                                            <div class="col-sm-2 col-xs-3">
+                                                <input id="CreditSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CreditSales;?>">  
+                                            </div> 
+                                            <div class="col-sm-2">
+                                        
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="row">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                <div class="col-sm-2 col-xs-3">
+                                        <label class="control-label"><h4><strong>PURCHASE</strong></h4></label>
+                                    </div>
+                                    <!-- <div class="col-sm-2 col-xs-3">
+                                        <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotPurchase;?>">
+                                    </div> -->
+                                    <div class="col-sm-2 col-xs-3">
+                                        <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CushPurchase;?>">
+                                    </div>
+                                    <div class="col-sm-2 col-xs-3">
+                                        <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankPurchase;?>">
+                                    </div>
+                                    <div class="col-sm-2 col-xs-3">
+                                        <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CreditPurchase;?>">
+                                    </div>
+                                    <div class="col-sm-2 col-xs-3">
+                                        
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-2 col-xs-3">
+                                        <label class="control-label"><h4><strong>RECEIPT</strong></h4></label>
+                                    </div>
+                                    <!-- <div class="col-sm-2 col-xs-3">
+                                        <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotReceipt;?>">
+                                    </div> -->
+                                    <div class="col-sm-2 col-xs-3">
+                                        <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CashReceipt;?>">
+                                    </div>
+                                    <div class="col-sm-2 col-xs-3">
+                                        <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankReceipt;?>">
+                                    </div>
+                                    <div class="col-sm-4 col-xs-3">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-2 col-xs-3">
+                                        <label class="control-label"><h4><strong>PAYMENT</strong></h4></label>
+                                    </div>
+                                    <!-- <div class="col-sm-2 col-xs-3">
+                                        <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotPayment;?>">
+                                    </div> -->
+                                    <div class="col-sm-2 col-xs-3">
+                                        <input id="flat" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $CashPayment;?>">
+                                    </div>
+                                    <div class="col-sm-2 col-xs-3">
+                                        <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $BankPayment;?>">
+                                    </div>
+                                    <div class="col-sm-4 col-xs-3">
+                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <br>
+                        <div class="row">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+
+                                    <div class="col-sm-4 col-xs-4 text-center">
+                                        <div class="btn-group" role="group" aria-label="First group">
+                                            <label class="control-label" style="margin-left:60px;"><B><h3><strong>TOTAL</strong></h3></B></a></label> 
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+
+                                    <div class="col-sm-2 col-xs-3">
+                                        <label class="control-label"><h4><strong>SALES</strong></h4></label>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4">
+                                            <input id="TotSales" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotSales;?>">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+
+                                    <div class="col-sm-2 col-xs-3">
+                                        <label class="control-label"><h4><strong>PURCHASE</strong></h4></label>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4">
+                                        <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotPurchase;?>">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+
+                                    <div class="col-sm-2 col-xs-3">
+                                        <label class="control-label"><h4><strong>RECEIPT</strong></h4></label>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4">
+                                        <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotReceipt;?>">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+
+                                    <div class="col-sm-2 col-xs-3">
+                                        <label class="control-label"><h4><strong>PAYMENT</strong></h4></label>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4">
+                                        <input id="percentage" class="form-control" style="font-size: 15px;" type="text" placeholder="" value="<?php echo $TotPayment;?>">
+                                    </div>
+
+                                </div>
+                            </div>
+                    </div>
+
+                </form>
+
+            </div> 
+
+        </div>
+    </div> 
+        <!-- --------- Transaction Table end ------------------- -->
 </section>
 
-        <script type="text/javascript">  
-            $('.date').datepicker({  
-            format: 'dd-mm-yyyy'  
-            });  
-        </script>  
+                <script type="text/javascript">  
+                    $('.date').datepicker({  
+                    format: 'dd-mm-yyyy'  
+                    });  
+                </script>  
 
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script>
-
-
-
-function getitemdata(TnDate)
-{
-
-alert(TnDate);
-  $.ajax({
-    
-        url: "ItemBackend.php",
-        type: "POST",
-        data: {
-            
-          // data from file : data to file 
-          TnDate:TnDate,
-        },
-        success: function(data) {
-          console.log(data);
-          // $('#dataholder').html(data);
-        var Date = JSON.parse(data);
+                    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+                        <script>
 
 
-          //$('#TnDate').val(TnDate);
-          $('#TotSales').val(Date.TotSales);
-            $('#BankSales').val(Date.BankSales);
-            $('#CreditSales').val(Date.CreditSales);
-            $('#TotPurchase').val(Date.TotPurchase);
-            $('#CushPurchase').val(Date.CushPurchase);
-            $('#BankPurchase').val(Date.BankPurchase);
-            $('#SalesRate').val(Date.CreditPurchase); 
-            $('#TotReceipt').val(Date.TotReceipt);
-            $('#CashReceipt').val(Date.CashReceipt);  
-            $('#BankReceipt').val(Date.BankReceipt);
-            $('#TotPayment').val(Date.TotPayment); 
-            $('#CashPayment').val(Date.CashPayment);
-            $('#BankPayment').val(Date.BankPayment); 
-            // $('#updateItem').show();
-            $('#AddItem').hide();
-        },
-      });
 
-} -->
+                    function getitemdata(TnDate)
+                    {
 
-    <!-- </script> -->
+                    alert(TnDate);
+                    $.ajax({
+                        
+                            url: "ItemBackend.php",
+                            type: "POST",
+                            data: {
+                                
+                            // data from file : data to file 
+                            TnDate:TnDate,
+                            },
+                            success: function(data) {
+                            console.log(data);
+                            // $('#dataholder').html(data);
+                            var Date = JSON.parse(data);
 
+
+                            //$('#TnDate').val(TnDate);
+                            $('#TotSales').val(Date.TotSales);
+                                $('#BankSales').val(Date.BankSales);
+                                $('#CreditSales').val(Date.CreditSales);
+                                $('#TotPurchase').val(Date.TotPurchase);
+                                $('#CushPurchase').val(Date.CushPurchase);
+                                $('#BankPurchase').val(Date.BankPurchase);
+                                $('#SalesRate').val(Date.CreditPurchase); 
+                                $('#TotReceipt').val(Date.TotReceipt);
+                                $('#CashReceipt').val(Date.CashReceipt);  
+                                $('#BankReceipt').val(Date.BankReceipt);
+                                $('#TotPayment').val(Date.TotPayment); 
+                                $('#CashPayment').val(Date.CashPayment);
+                                $('#BankPayment').val(Date.BankPayment); 
+                                // $('#updateItem').show();
+                                $('#AddItem').hide();
+                            },
+                        });
+
+                    } -->
+
+                        <!-- </script> -->
 
 </body>
 </html>
