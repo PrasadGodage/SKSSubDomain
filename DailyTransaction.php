@@ -36,7 +36,7 @@ if($_SESSION['username']=="")
 
             $sqlC= "SELECT sum(`totSales`)As TotSales,sum(`cashSales`)As CashSales,sum(`bankSales`)As BankSales,sum(`creditSales`)As CreditSales,sum(`totPurchase`)As TotPurchase,sum(`cashPurchase`)As CushPurchase,sum(`bankPurchase`)As BankPurchase,sum(`creditPurchase`)As CreditPurchase,
             sum(`totReceipt`)As TotReceipt,sum(`cashReceipt`)As CashReceipt,sum(`bankReceipt`)AS BankReceipt,sum(`totPayment`)As TotPayment,sum(`cashPayment`)As CashPayment,sum(`bankPayment`)As BankPayment
-            FROM `daily_transaction` WHERE DATE(TnDate) = Date(Now())" ;
+            FROM `Daily_Transaction` WHERE DATE(TnDate) = Date(Now())" ;
 
         $result = mysqli_query($con,$sqlC);
         $rows = mysqli_fetch_assoc($result);
@@ -122,7 +122,7 @@ if($_SESSION['username']=="")
 <?php
 
  $new_date = date('d-m-Y');
- $query = "SELECT `TnDate`,`totSales`,`cashSales`,`bankSales`,`creditSales`,`totPurchase`,`cashPurchase`,`bankPurchase`,`creditPurchase`,`totReceipt`,`cashReceipt`,`bankReceipt`,`totPayment`,`cashPayment`,`bankPayment` FROM `daily_transaction` WHERE `TnDate`>='$new_date'";
+ $query = "SELECT `TnDate`,`totSales`,`cashSales`,`bankSales`,`creditSales`,`totPurchase`,`cashPurchase`,`bankPurchase`,`creditPurchase`,`totReceipt`,`cashReceipt`,`bankReceipt`,`totPayment`,`cashPayment`,`bankPayment` FROM `Daily_Transaction` WHERE `TnDate`>='$new_date'";
 //   echo $new_date ;
   $result = mysqli_query($con, $query);
 ?>
@@ -151,7 +151,7 @@ if($_SESSION['username']=="")
 
                         $sqlC= "SELECT sum(`totSales`)As TotSales,sum(`cashSales`)As CashSales,sum(`bankSales`)As BankSales,sum(`creditSales`)As CreditSales,sum(`totPurchase`)As TotPurchase,sum(`cashPurchase`)As CushPurchase,sum(`bankPurchase`)As BankPurchase,sum(`creditPurchase`)As CreditPurchase,
                         sum(`totReceipt`)As TotReceipt,sum(`cashReceipt`)As CashReceipt,sum(`bankReceipt`)AS BankReceipt,sum(`totPayment`)As TotPayment,sum(`cashPayment`)As CashPayment,sum(`bankPayment`)As BankPayment
-                        FROM `daily_transaction` WHERE TnDate='$new_date'" ;
+                        FROM `Daily_Transaction` WHERE TnDate='$new_date'" ;
 
                     $result = mysqli_query($con,$sqlC);
                     $rows = mysqli_fetch_assoc($result);

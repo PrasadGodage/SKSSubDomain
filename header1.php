@@ -101,9 +101,29 @@
 
                     </div>
 
-                    <div class="navbar-collapse collapse clearfix">
+            <div class="navbar-collapse collapse clearfix">
 
-                        <ul class="navigation clearfix">
+                <ul class="navigation clearfix">
+
+                    <li class="active"><a href="Dashboard_SKS.php">Dashboard</a></li> 
+                    <li class="dropdown"><a href="#">Outstanding</a>
+                        <ul>
+                            <li><a href="SupplierOutstanding.php">Supplier</a></li>
+                            <li><a href="Outstanding.php">Customer</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Stock.php">Stock</a></li>
+                    <li class="dropdown"><a href="#">Transactions</a>
+                        <ul>
+                            <li><a href="DailyTransaction.php">Daily Transactions</a></li>
+                            <li><a href="TransactionHistory.php">Transactions History</a></li>
+                            <li><a href="GraphicalSales.php">Graphical Sales</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+
+                        <!-- <ul class="navigation clearfix">
 
                             <li class="active"><a href="Dashboard_SKS.php">Dashboard</a></li>                           
 
@@ -121,23 +141,38 @@
 
                             <li><a href="logout.php">Logout</a></li>
 
-                        </ul>
+                        </ul> -->
 
                         <ul class="mobile-menu clearfix">
                             
                             <li class="active"><a href="Dashboard_SKS.php">Dashboard</a></li>                       
 
-                            <li><a href="SupplierOutstanding.php">Supplier Outstanding</a></li>
+                            <!-- <li><a href="SupplierOutstanding.php">Supplier Outstanding</a></li>
 
-                            <li><a href="Outstanding.php">Customer Outstanding</a></li>
+                            <li><a href="Outstanding.php">Customer Outstanding</a></li> -->
+
+                            <li class="dropdown"><a href="#">Outstanding</a>
+                                <ul>
+                                    <li><a href="SupplierOutstanding.php">Supplier</a></li>
+                                    <li><a href="Outstanding.php">Customer</a></li>
+                                </ul>
+                            </li>
 
                             <li><a href="Stock.php">Stock</a></li>
 
-                            <li><a href="DailyTransaction.php">Daily Transactions</a></li>
+                            <li class="dropdown"><a href="#">Transactions</a>
+                                <ul>
+                                    <li><a href="DailyTransaction.php">Daily Transactions</a></li>
+                                    <li><a href="TransactionHistory.php">Transactions History</a></li>
+                                    <li><a href="GraphicalSales.php">Graphical Sales</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- <li><a href="DailyTransaction.php">Daily Transactions</a></li>
 
                             <li><a href="TransactionHistory.php">Transactions History</a></li>
 
-                            <li><a href="GraphicalSales.php">Graphical Sales</a></li>
+                            <li><a href="GraphicalSales.php">Graphical Sales</a></li> -->
 
                             <li><a href="logout.php">Logout</a></li>                          
 

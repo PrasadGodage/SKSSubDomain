@@ -43,7 +43,7 @@ if($_SESSION['username']=="")
                // $connect = mysqli_connect("localhost", "soulsoftin_root", "Prasad@321", "soulsoftin_SKS");
                $fromTimestamp =  date('d-m-Y');
                $toTimestamp = date('d-m-Y');
-                $query = "SELECT `TnDate`,`totSales`,`cashSales`,`bankSales`,`creditSales`,`totPurchase`,`cashPurchase`,`bankPurchase`,`creditPurchase`,`totReceipt`,`cashReceipt`,`bankReceipt`,`totPayment`,`cashPayment`,`bankPayment` FROM `daily_transaction` WHERE `TnDate`>='$fromTimestamp' AND `TnDate`<='$toTimestamp'";
+                $query = "SELECT `TnDate`,`totSales`,`cashSales`,`bankSales`,`creditSales`,`totPurchase`,`cashPurchase`,`bankPurchase`,`creditPurchase`,`totReceipt`,`cashReceipt`,`bankReceipt`,`totPayment`,`cashPayment`,`bankPayment` FROM `Daily_Transaction` WHERE `TnDate`>='$fromTimestamp' AND `TnDate`<='$toTimestamp'";
                //  echo  $fromTimestamp ;
                $result = mysqli_query($con, $query);
 
@@ -141,7 +141,7 @@ if($_SESSION['username']=="")
                 $fromTimestamp = date('Y-m-d', strtotime($_POST['fromdate']));
                 $toTimestamp = date('Y-m-d', strtotime($_POST['todate']));
 
-                $query = "SELECT * FROM `daily_transaction` WHERE date(`TnDate`) BETWEEN  Date'$fromTimestamp' AND Date' $toTimestamp'";
+                $query = "SELECT * FROM `Daily_Transaction` WHERE date(`TnDate`) BETWEEN  Date'$fromTimestamp' AND Date' $toTimestamp'";
 
 
                 $result = mysqli_query($con, $query);

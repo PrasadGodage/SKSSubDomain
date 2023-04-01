@@ -10,7 +10,7 @@ if($_SESSION['username']=="")
 
 <?php
 
-$query = " SELECT `TnDate`, `totSales`, `cashSales`, `bankSales`, `creditSales` FROM `daily_transaction` ";
+$query = " SELECT `TnDate`, `totSales`, `cashSales`, `bankSales`, `creditSales` FROM `Daily_Transaction` ";
 $result = mysqli_query($con,$query);
 
 ?>
@@ -43,7 +43,7 @@ $result = mysqli_query($con,$query);
 
             <?php
 
-            // $query = " SELECT `TnDate`, `totSales`, `cashSales`, `bankSales`, `creditSales` FROM `daily_transaction` ";
+            // $query = " SELECT `TnDate`, `totSales`, `cashSales`, `bankSales`, `creditSales` FROM `Daily_Transaction` ";
             // $result = mysqli_query($con,$query);
 
             // echo "$result";
@@ -199,7 +199,7 @@ $result = mysqli_query($con,$query);
                 $fromTimestamp = date('Y-m-d', strtotime($_POST['fromdate']));
                 $toTimestamp = date('Y-m-d', strtotime($_POST['todate']));
 
-                $query = "SELECT * FROM `daily_transaction` WHERE date(`TnDate`) BETWEEN  Date'$fromTimestamp' AND Date' $toTimestamp'";
+                $query = "SELECT * FROM `Daily_Transaction` WHERE date(`TnDate`) BETWEEN  Date'$fromTimestamp' AND Date' $toTimestamp'";
 
                 $result = mysqli_query($con, $query);
             }
