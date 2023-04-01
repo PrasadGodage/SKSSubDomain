@@ -4,7 +4,7 @@ session_start();
 $servername = "localhost";
 
 
-//------FOR WEB CONNECTION  ----------------
+//------FOR WEB CONNECTION Final  ----------------
 $username = "soulsoftin_root";
 $password = "soulshiv@1987#Soul";
 
