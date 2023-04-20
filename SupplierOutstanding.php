@@ -18,6 +18,7 @@ if($_SESSION['username']=="")
      <?php include './header1.php';?>
 
 <link href="cust_css/ourclient-style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
 <body>
    <section class="service sec-padd2" style="background-color: #203364;padding: 20px 0 0px;margin-bottom: 10px;">
@@ -95,6 +96,8 @@ if($_SESSION['username']=="")
                                     <td>Balance</td>
 
                                     <td>CrDr</td>
+                                    <td>Call</td>
+                                    <td>SMS</td>
 
 
 
@@ -124,6 +127,10 @@ if($_SESSION['username']=="")
                          <td>' . $row["Balance"] . '</td>
 
                          <td>' . $row["CrDrType"] . '</td>
+                          <td><i class="fa fa-phone"></i><a href="tel:8530798679"style="margin-left: 6px;">Call</a></td>
+                        
+                        <td><i class="fa fa-comments"></i><a href="sms:8530798679"style="margin-left: 6px;">SMS</a></td>
+                        
 
 
 

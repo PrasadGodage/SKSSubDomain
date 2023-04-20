@@ -6,7 +6,8 @@
      header("location:../logout.php"); 
      }
 
- ?>
+?>
+
 <!doctype html>
 
 <html lang="en">
@@ -19,6 +20,7 @@
 
      <?php include './header1.php';?>
      <link href="css/ourclient-style.css" rel="stylesheet"/>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
 <body>
    <section class="service sec-padd2" style="background-color: #203364;padding: 20px 0 0px;margin-bottom: 10px;">
@@ -36,11 +38,14 @@
                // $connect = mysqli_connect("localhost", "soulsoftin_root", "Prasad@321", "soulsoftin_SKS");
 
                 $query = "SELECT * FROM customer ORDER BY Balance DESC";
+                $q = "SELECT * FROM `customer` WHERE `UserId` = '2'";
 
                $result = mysqli_query($con, $query);
+               $r = mysqli_query($con, $q);
+               
 
           ?>
-
+ 
 
 
                <title>Outstanding</title>
@@ -97,6 +102,10 @@
                                     <td>Balance</td>
 
                                     <td>CrDr</td>
+                                    <td>Call</td>
+                                    <td>SMS</td>
+                                    <td>Email</td>
+                                    <td>WhatsApp</td>
 
                           
 
@@ -126,6 +135,16 @@
                          <td>' . $row["Balance"] . '</td>
 
                          <td>' . $row["CrDrType"] . '</td>
+
+                         <td><i class="fa fa-phone"></i><a href="tel:' .$row["Contact"]. '"style="margin-left: 6px;">Call</a></td>
+                         <td><i class="fa fa-comments"></i><a href="sms:' .$row["Contact"]. '"style="margin-left: 6px;">SMS</a></td>
+                         
+
+
+                         
+
+
+     
 
 
 

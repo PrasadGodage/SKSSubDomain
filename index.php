@@ -63,7 +63,7 @@ height: 100%;
   <body>
 
  <section class="vh-100">
-  <h1>Main</h1>
+  
 
   <div class="container-fluid h-custom">
 
