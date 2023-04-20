@@ -5,12 +5,12 @@ $servername = "localhost";
 
 //------URMILA work done on List---------------
 //------FOR WEB CONNECTION Final  ----------------
-$username = "soulsoftin_root";
-$password = "soulshiv@1987#Soul";
+// $username = "soulsoftin_root";
+// $password = "soulshiv@1987#Soul";
 
 //------FOR LOCAL CONNECTION  ----------------
-// $username = "root";
-// $password = "";
+$username = "root";
+$password = "";
 
 // $dbname = "soulsoftin_Web_SksCustomer";
 $dbname = "soulsoftin_SKS_Prasad";

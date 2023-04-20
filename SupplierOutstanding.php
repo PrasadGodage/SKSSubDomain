@@ -127,9 +127,9 @@ if($_SESSION['username']=="")
                          <td>' . $row["Balance"] . '</td>
 
                          <td>' . $row["CrDrType"] . '</td>
-                          <td><i class="fa fa-phone"></i><a href="tel:8530798679"style="margin-left: 6px;">Call</a></td>
+                          <td><i class="fa fa-phone"></i><a href="tel:' .$row["Contact"].'"style="margin-left: 6px;">Call</a></td>
                         
-                        <td><i class="fa fa-comments"></i><a href="sms:8530798679"style="margin-left: 6px;">SMS</a></td>
+                        <td><i class="fa fa-comments"></i><a href="sms:' .$row["Contact"]. '"style="margin-left: 6px;">SMS</a></td>
                         
 
 
