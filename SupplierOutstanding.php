@@ -1,4 +1,5 @@
 <?php
+
 include 'DB_config.php';
 mysqli_select_db($con, $_SESSION['DBName']);
 if($_SESSION['username']=="")
@@ -29,7 +30,7 @@ if($_SESSION['username']=="")
                 
             </div>              
         </div>
-    </section> 
+    </section>
 
 
           <?php
@@ -98,6 +99,7 @@ if($_SESSION['username']=="")
                                     <td>CrDr</td>
                                     <td>Call</td>
                                     <td>SMS</td>
+                                    <td>WhatsApp</td>
 
 
 
@@ -150,10 +152,9 @@ if($_SESSION['username']=="")
 
      </body>
 
-
-     <script>      
+  
           //--------------------Script Used To Search Box-----------------------------
-          function myFunction() 
+          function myFunction()
           {
                var input, filter, table, tr, td, i, txtValue;
 

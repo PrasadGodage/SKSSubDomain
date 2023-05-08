@@ -26,13 +26,13 @@ if (mysqli_num_rows($result) == 1) {
     $_SESSION['id'] =$rows['CUSTID'];
     $_SESSION['ShopName'] =$rows['Shopname'];
     $_SESSION['DBName'] =$rows['WebDBName'];
-    $Subdomain=$rows['Subdomain'];
+    // $Subdomain= $rows['Subdomain'];
 
 //echo $_SESSION['ShopName']."--".$pwd;
 header('Location:Dashboard_SKS.php');
 }else{
 
-    echo '<script>alert("Please check the login details");window.location.replace("https://soulsoftinfotech.in/SKS/index.php");</script>';
+    echo '<script>alert("Please check the login details");window.location.replace("localhost/SKS/index.php");</script>';
     // echo '<script>window.location.replace("https://soulsoftinfotech.in/SKS/index.php")</script>';
     // header('Location:../SKS/index.php');
 //echo 'failure'.mysqli_error($con);

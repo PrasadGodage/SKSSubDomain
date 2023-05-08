@@ -2,266 +2,252 @@
 
 <html lang="en">
 
-  <head>
+<head>
 
-    <!-- Required meta tags -->
+  <!-- Required meta tags -->
 
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
 
-    <!-- Bootstrap CSS -->
+  <!-- Bootstrap CSS -->
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
 
 
-    <title>Welcome - Soulsoft Infotech</title>
+  <title>Welcome - Soulsoft Infotech</title>
 
-    
 
-    <style>
 
-        .divider:after,
+  <style>
+    .divider:after,
 
-.divider:before {
+    .divider:before {
 
-content: "";
+      content: "";
 
-flex: 1;
+      flex: 1;
 
-height: 1px;
+      height: 1px;
 
-background: #eee;
+      background: #eee;
 
-}
+    }
 
-.h-custom {
+    .h-custom {
 
-height: calc(100% - 73px);
+      height: calc(100% - 73px);
 
-}
+    }
 
-@media (max-width: 450px) {
+    @media (max-width: 450px) {
 
-.h-custom {
+      .h-custom {
 
-height: 100%;
+        height: 100%;
 
-}
+      }
 
-}
+    }
+  </style>
 
-    </style>
 
-    
 
-  </head>
+</head>
 
-  <body>
+<body>
 
- <section class="vh-100">
-  
+  <section class="vh-100">
 
-  <div class="container-fluid h-custom">
 
-    <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="container-fluid h-custom">
 
-      <div class="col-md-9 col-lg-6 col-xl-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
 
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+        <div class="col-md-9 col-lg-6 col-xl-5">
 
-          class="img-fluid" alt="Sample image">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
 
-      </div>
+        </div>
 
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 
-        <form action="loginchecker.php" method="POST">
+          <form action="loginchecker.php" method="POST">
 
-          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+            <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
 
-            <center>
+              <center>
 
-                <h3  style="text-align:center;">Shetkari Krushi Software (SKS)</h3>
+                <h3 style="text-align:center;">Shetkari Krushi Software (SKS)</h3>
 
-            </center>
+              </center>
 
-            <!--<button type="button" class="btn btn-primary btn-floating mx-1">-->
+              <!--<button type="button" class="btn btn-primary btn-floating mx-1">-->
 
-            <!--  <i class="fab fa-facebook-f"></i>-->
+              <!--  <i class="fab fa-facebook-f"></i>-->
 
-            <!--</button>-->
+              <!--</button>-->
 
 
 
-            <!--<button type="button" class="btn btn-primary btn-floating mx-1">-->
+              <!--<button type="button" class="btn btn-primary btn-floating mx-1">-->
 
-            <!--  <i class="fab fa-twitter"></i>-->
+              <!--  <i class="fab fa-twitter"></i>-->
 
-            <!--</button>-->
+              <!--</button>-->
 
 
 
-            <!--<button type="button" class="btn btn-primary btn-floating mx-1">-->
+              <!--<button type="button" class="btn btn-primary btn-floating mx-1">-->
 
-            <!--  <i class="fab fa-linkedin-in"></i>-->
+              <!--  <i class="fab fa-linkedin-in"></i>-->
 
-            <!--</button>-->
-
-          </div>
-
-
-
-          <!--<div class="divider d-flex align-items-center my-4">-->
-
-          <!--  <p class="text-center fw-bold mx-3 mb-0">Or</p>-->
-
-          <!--</div>-->
-
-
-
-          <!-- Email input -->
-
-          <div class="form-outline mb-4 mt-3">
-
-            <input type="text" name="username" class="form-control form-control-lg"
-
-              placeholder="Username" />
-
-            <!--<label class="form-label" for="form3Example3">Email address</label>-->
-
-          </div>
-
-
-
-          <!-- Password input -->
-
-          <div class="form-outline mb-3">
-
-            <input type="password" name="password" class="form-control form-control-lg"
-
-              placeholder="Enter password" />
-
-            <!--<label class="form-label" for="form3Example4">Password</label>-->
-
-          </div>
-
-
-
-          <div class="d-flex justify-content-between align-items-center">
-
-            <!-- Checkbox -->
-
-            <div class="form-check mb-0">
-
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-
-              <label class="form-check-label" for="form2Example3">
-
-                Remember me
-
-              </label>
+              <!--</button>-->
 
             </div>
 
-            <a href="#!" class="text-body">Forgot password?</a>
-
-          </div>
 
 
+            <!--<div class="divider d-flex align-items-center my-4">-->
 
-          <div class="text-center text-lg-start mt-4 pt-2">
+            <!--  <p class="text-center fw-bold mx-3 mb-0">Or</p>-->
 
-            <button type="submit" class="btn btn-primary btn-lg"
-
-              style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-
-            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-
-                class="link-danger">Register</a></p>
-
-          </div>
+            <!--</div>-->
 
 
 
-        </form>
+            <!-- Email input -->
+
+            <div class="form-outline mb-4 mt-3">
+
+              <input type="text" name="username" class="form-control form-control-lg" placeholder="Username" />
+
+              <!--<label class="form-label" for="form3Example3">Email address</label>-->
+
+            </div>
+
+
+
+            <!-- Password input -->
+
+            <div class="form-outline mb-3">
+
+              <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter password" />
+
+              <!--<label class="form-label" for="form3Example4">Password</label>-->
+
+            </div>
+
+
+
+            <div class="d-flex justify-content-between align-items-center">
+
+              <!-- Checkbox -->
+
+              <div class="form-check mb-0">
+
+                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+
+                <label class="form-check-label" for="form2Example3">
+
+                  Remember me
+
+                </label>
+
+              </div>
+
+              <a href="#!" class="text-body">Forgot password?</a>
+
+            </div>
+
+
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+
+              <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+
+              <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!" class="link-danger">Register</a></p>
+
+            </div>
+
+
+
+          </form>
+
+        </div>
 
       </div>
 
     </div>
 
-  </div>
+    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
 
-  <div
+      <!-- Copyright -->
 
-    class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+      <div class="text-white mb-3 mb-md-0">
 
-    <!-- Copyright -->
+        Copyright © 2020. All rights reserved @ Soulsoft Infotech.
 
-    <div class="text-white mb-3 mb-md-0">
+      </div>
 
-      Copyright © 2020. All rights reserved @ Soulsoft Infotech.
+      <!-- Copyright -->
+
+
+
+      <!-- Right -->
+
+      <div>
+
+        <a href="#!" class="text-white me-4">
+
+          <i class="fab fa-facebook-f"></i>
+
+        </a>
+
+        <a href="#!" class="text-white me-4">
+
+          <i class="fab fa-twitter"></i>
+
+        </a>
+
+        <a href="#!" class="text-white me-4">
+
+          <i class="fab fa-google"></i>
+
+        </a>
+
+        <a href="#!" class="text-white">
+
+          <i class="fab fa-linkedin-in"></i>
+
+        </a>
+
+      </div>
+
+      <!-- Right -->
 
     </div>
 
-    <!-- Copyright -->
+  </section>
+
+  <!-- Optional JavaScript; choose one of the two! -->
 
 
 
-    <!-- Right -->
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 
-    <div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
-      <a href="#!" class="text-white me-4">
-
-        <i class="fab fa-facebook-f"></i>
-
-      </a>
-
-      <a href="#!" class="text-white me-4">
-
-        <i class="fab fa-twitter"></i>
-
-      </a>
-
-      <a href="#!" class="text-white me-4">
-
-        <i class="fab fa-google"></i>
-
-      </a>
-
-      <a href="#!" class="text-white">
-
-        <i class="fab fa-linkedin-in"></i>
-
-      </a>
-
-    </div>
-
-    <!-- Right -->
-
-  </div>
-
-</section>
-
-    <!-- Optional JavaScript; choose one of the two! -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
 
 
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
-
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-
-    <!--
+  <!--
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
@@ -271,6 +257,6 @@ height: 100%;
 
     -->
 
-  </body>
+</body>
 
 </html>
