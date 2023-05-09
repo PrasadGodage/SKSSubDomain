@@ -1,4 +1,13 @@
 <?php
+if (isset($_SERVER['HTTPS'])) {
+    $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+} else {
+    $protocol = 'http';
+}
+$base_url = $protocol . "://" . $_SERVER['SERVER_NAME'] . '/' . (explode('/', $_SERVER['PHP_SELF'])[1]) . '/';
+?>
+
+<?php
 include 'DB_config.php';
 mysqli_select_db($con, $_SESSION['DBName']);
 if ($_SESSION['username'] == "") {
@@ -20,12 +29,10 @@ if ($_SESSION['username'] == "") {
 
 <body>
      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
-          rel="stylesheet">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-     <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
      </head>
      <section class="service sec-padd2" style="background-color: #203364;padding: 20px 0 0px;margin-bottom: 10px;">
@@ -109,27 +116,24 @@ if ($_SESSION['username'] == "") {
                                    </div> -->
 
                               <div class="col-sm-2 col-xs-4" style="padding:7px;">
-                                   <label class="control-label" for="fromdate" style="Float:right;"><strong
-                                             style="font-size: 17px;">From Date:</strong></label>
+                                   <label class="control-label" for="fromdate" style="Float:right;"><strong style="font-size: 17px;">From Date:</strong></label>
                               </div>
                               <div class="col-sm-2 col-xs-8" style="padding:7px;">
-                                   <input class="date form-control" style="width: 170px;font-size: 17px;" type="text"
-                                        id="fromdate" name="fromdate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>
+                                   <input class="date form-control" style="width: 170px;font-size: 17px;" type="text" id="fromdate" name="fromdate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>
                               </div>
                               <div class="col-sm-2 col-xs-4" style="padding:7px;">
-                                   <label class="control-label float-right" for="todate" style="Float:right;"><strong
-                                             style="font-size: 17px;">To Date:</strong></label>
+                                   <label class="control-label float-right" for="todate" style="Float:right;"><strong style="font-size: 17px;">To Date:</strong></label>
                               </div>
                               <div class="col-sm-2 col-xs-8" style="padding:7px;">
-                                   <input class="date form-control" style="width: 170px;font-size: 17px;" type="text"
-                                        id="todate" name="todate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>
+                                   <input class="date form-control" style="width: 170px;font-size: 17px;" type="text" id="todate" name="todate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>
                               </div>
 
                               <div class="col-xs-3"></div>
 
                               <div class="col-sm-4 col-xs-4" style="margin-top:7px;">
-                                   <input type="submit" class="btn btn-info mt-5" name="ok"
-                                        value="SHOW TRANSACTION DATA" style="Float:left;">
+                                   <input type="submit" class="btn btn-info mt-5" name="ok" value="SHOW TRANSACTION DATA" style="Float:left; margin-right:12px;">
+
+                                   <button id="print" class="btn btn-info" type="button">Print</button>
                               </div>
 
                               <!-- <div class="col-md-1 col-xs-12">
@@ -212,7 +216,7 @@ if ($_SESSION['username'] == "") {
                          while ($row = mysqli_fetch_array($result)) {
                               //         $msg="Dear ".$row["Name"]." Your current outstanding balance is ".$row["Balance"];          
                               //    $new = str_replace(' ', '%20', $msg);
-                         
+
                               $orgDate = $row["TnDate"];
                               $newDate = date("d-m-Y", strtotime($orgDate));
 
@@ -254,17 +258,13 @@ if ($_SESSION['username'] == "") {
  
 
                     ';
-
-
-
                          }
                          ?>
 
                     </table>
 
                </div>
-               <a class="thm-btn" href="Dashboard_SKS.php"
-                    style="transition: none 0s ease 0s; line-height: 20px; border-width: 0px; margin: 0px; padding: 20px 38px; letter-spacing: 0px; font-weight: 400; font-size: 14px;">GOTO
+               <a class="thm-btn" href="Dashboard_SKS.php" style="transition: none 0s ease 0s; line-height: 20px; border-width: 0px; margin: 0px; padding: 20px 38px; letter-spacing: 0px; font-weight: 400; font-size: 14px;">GOTO
                     DASHBOARD</a>
           </div>
 
@@ -272,9 +272,56 @@ if ($_SESSION['username'] == "") {
           <script type="text/javascript">
                $('.date').datepicker({
                     format: 'dd-mm-yyyy'
-               });  
+               });
           </script>
 
+          <noscript>
+               <div>
+                    <style>
+                         body {
+                              background-image: none !important;
+                         }
+
+                         .mb-0 {
+                              margin: 0px;
+                         }
+                    </style>
+                    <div style="line-height:1em">
+                         <h4 class="mb-0 text-center"><b><?php echo $new_date; ?></b></h4>
+                         <h4 class="mb-0 text-center"><b><?php echo  $_SESSION['ShopName']; ?></b></h4>
+                         <div class="mb-0 text-center"><b>as of</b></div>
+                         <!-- <div class="mb-0 text-center"><b><?= date("F d, Y", strtotime($date)) ?></b></div> -->
+
+                    </div>
+                    <hr>
+               </div>
+          </noscript>
+
+          <script type="text/javascript">
+               $(function() {
+
+                    $('#print').click(function() {
+
+                         var ns = $($('noscript').html()).clone()
+
+                         var base = '<?= $base_url ?>';
+
+
+                         var nw = window.open("", "_blank", "width:" + ($(window).width() * .8) + ",left:" + ($(window).width() * .1) + ",height:" + ($(window).height() * .8) + ",top:" + ($(window).height() * .1))
+                         nw.document.querySelector('head').innerHTML = h.html()
+                         nw.document.querySelector('body').innerHTML = ns[0].outerHTML
+                         nw.document.querySelector('body').innerHTML += p[0].outerHTML
+                         nw.document.close()
+                         setTimeout(() => {
+                              nw.print()
+                              setTimeout(() => {
+                                   nw.close()
+                              }, 200);
+                         }, 200);
+
+                    })
+               })
+          </script>
      </body>
 
 
@@ -313,9 +360,9 @@ if ($_SESSION['username'] == "") {
 
           //------------------------Sript To used Select All----------------------------
 
-          $(document).ready(function () {
+          $(document).ready(function() {
 
-               $('#SelectAll').change(function () {
+               $('#SelectAll').change(function() {
 
                     if (this.checked) {
 
@@ -330,9 +377,6 @@ if ($_SESSION['username'] == "") {
                });
 
           });
-
-
-
      </script>
 
      <style>

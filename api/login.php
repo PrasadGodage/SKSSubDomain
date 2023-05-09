@@ -9,7 +9,9 @@ extract($_POST);
 // Only for Api Checking
 $check = true;
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+if (isset($_POST['username']) && isset($_POST['password']) &&  isset($_POST['DBNAME'])) {
+	
+	mysqli_connect($host_name, $user_name, $password, $db_name) or die(mysqli_connect_error());
 	// if ($check) {
 	$user = $_POST['username'];
 	$password = $_POST['password'];
@@ -61,3 +63,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 mysqli_close($conn);
 exit(json_encode($response));
+
+
+
+
+
+
+
+

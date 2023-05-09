@@ -26,6 +26,9 @@ if (mysqli_num_rows($result) == 1) {
     $_SESSION['id'] =$rows['CUSTID'];
     $_SESSION['ShopName'] =$rows['Shopname'];
     $_SESSION['DBName'] =$rows['WebDBName'];
+    $_SESSION['Address'] = $rows['Address'];
+    $_SESSION['Mobile'] = $rows['Mobile'];
+
     // $Subdomain= $rows['Subdomain'];
 
 //echo $_SESSION['ShopName']."--".$pwd;

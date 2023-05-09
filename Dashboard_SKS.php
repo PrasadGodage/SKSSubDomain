@@ -15,6 +15,7 @@ if (isset($_SESSION['username'])) {
   } else {
     $CustOutstanding = 0;
   }
+  
   //----------------------------------------------------------------------------
   $sqlC = "SELECT sum(`Balance`) AS SuppOutStanding FROM Supplier ";
 
@@ -50,6 +51,7 @@ if (isset($_SESSION['username'])) {
     $TotOut = 0;
   }
 }
+
 ?>
 <!DOCTYPE html>
 
@@ -70,6 +72,8 @@ if (isset($_SESSION['username'])) {
     <div class="container">
       <div class="section-title center" style="margin-bottom: 20px;">
         <h3 style="color: white;"><span style="text-transform:uppercase;"> <?php echo  $_SESSION['ShopName']; ?></span></h3>
+        <h4 style="color: white; margin-bottom: 20px; "><?php echo  $_SESSION['Address']; ?> </h4>
+        <h4 style="color: white; margin-bottom: 20px; ">Mobile No - <?php echo  $_SESSION['Mobile']; ?> </h4>
         <h5 style="font-weight:bolder;color: #d0d8f1;">SHETKARI KRUSHI SOFTWARE </h5>
 
       </div>

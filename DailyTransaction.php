@@ -1,11 +1,4 @@
-<?php
-if (isset($_SERVER['HTTPS'])) {
-    $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
-} else {
-    $protocol = 'http';
-}
-$base_url = $protocol . "://" . $_SERVER['SERVER_NAME'] . '/' . (explode('/', $_SERVER['PHP_SELF'])[1]) . '/';
-?>
+
 
 
 
@@ -247,7 +240,7 @@ if (isset($_SESSION['username'])) {
                                 <!-- <input type="submit" class="btn btn-info mt-5" value="Send Daily TRansaction Message"> -->
                                 <a style="margin-right:12px;" href="sms:8055798679?&body= <?php echo  $_SESSION['ShopName']; ?> date - <?php echo $new_date; ?> Total Purchase - <?php $TotPurchase; ?> Total Sales - <?php echo $TotSales; ?> Total Receipt - <?php echo $TotReceipt; ?> Total Payment - <?php echo $TotPayment; ?> " class="btn btn-info mt-5">Send Message</a>
 
-                                <button id="print" class="btn btn-info" type="button">Print</button>
+                                
 
                                 <!-- <Button class="btn btn-primary mt-4" id="AddItem" onclick="getitemdata('3-15-2023')">SHOW TRANSACTION DATA</Button> -->
 
@@ -564,53 +557,7 @@ if (isset($_SESSION['username'])) {
 
     <!-- </script> -->
 
-    <noscript>
-        <div>
-            <style>
-                body {
-                    background-image: none !important;
-                }
-
-                .mb-0 {
-                    margin: 0px;
-                }
-            </style>
-            <div style="line-height:1em">
-                <h4 class="mb-0 text-center"><b><?php echo $new_date; ?></b></h4>
-                <h4 class="mb-0 text-center"><b><?php echo  $_SESSION['ShopName']; ?></b></h4>
-                <div class="mb-0 text-center"><b>as of</b></div>
-                <!-- <div class="mb-0 text-center"><b><?= date("F d, Y", strtotime($date)) ?></b></div> -->
-
-            </div>
-            <hr>
-        </div>
-    </noscript>
-
-    <script type="text/javascript">
-        $(function() {
-
-            $('#print').click(function() {
-
-                var ns = $($('noscript').html()).clone()
-
-                var base = '<?= $base_url ?>';
-              
-            
-                var nw = window.open("", "_blank", "width:" + ($(window).width() * .8) + ",left:" + ($(window).width() * .1) + ",height:" + ($(window).height() * .8) + ",top:" + ($(window).height() * .1))
-                nw.document.querySelector('head').innerHTML = h.html()
-                nw.document.querySelector('body').innerHTML = ns[0].outerHTML
-                nw.document.querySelector('body').innerHTML += p[0].outerHTML
-                nw.document.close()
-                setTimeout(() => {
-                    nw.print()
-                    setTimeout(() => {
-                        nw.close()
-                    }, 200);
-                }, 200);
-
-            })
-        })
-    </script>
+ 
 
 </body>
 
