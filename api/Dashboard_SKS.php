@@ -12,36 +12,35 @@ $check = true;
 // if (isset($_SESSION['DBName'])) {
 if ($check) {
 
-$sqlC = "SELECT sum(Balance) AS CustOutStanding FROM `customer` ";
+	$sqlC = "SELECT sum(Balance) AS CustOutStanding FROM `customer`";
 
-$result = mysqli_query($conn, $sqlC);
+	$result = mysqli_query($conn, $sqlC);
 
-if ($result != null) {
-	$rows = mysqli_fetch_assoc($result);
+	if ($result != null) {
+		$rows = mysqli_fetch_assoc($result);
 
-	if (mysqli_num_rows($result) > 0) {
-		$CustOutstanding = $rows['CustOutStanding'];
+		if (mysqli_num_rows($result) > 0) {
+			$CustOutstanding = $rows['CustOutStanding'];
 
-		$records[] = array_merge($CustOutstanding);
+			$records[] = array_merge($CustOutstanding);
 
-		$response = array(
-			'Message' => "All users Fetched successfully",
-			"Data" => $records,
-			'Responsecode' => 200
-		);
+			$response = array(
+				'Message' => "All users Fetched successfully",
+				"Data" => $records,
+				'Responsecode' => 200
+			);
+		} else {
+			$response = array(
+				'Message' => "No data present",
+				'Responsecode' => 401
+			);
+		}
 	} else {
 		$response = array(
-			'Message' => "No data present",
-			'Responsecode' => 401
+			'Message' => mysqli_error($conn),
+			'Responsecode' => 300
 		);
 	}
-} else {
-	$response = array(
-		'Message' => mysqli_error($conn),
-		'Responsecode' => 300
-	);
-}
-
 }
 mysqli_close($conn);
 exit(json_encode($response));

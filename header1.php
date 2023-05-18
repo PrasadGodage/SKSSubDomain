@@ -87,8 +87,7 @@
 
                             <div class="navbar-header">
 
-                                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target=".navbar-collapse">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 
                                     <span class="icon-bar"></span>
 
@@ -182,6 +181,41 @@
                             </div>
 
                         </nav>
+
+                        <div style="width: 60px; height:60px; position:fixed; right:10px;top:50px;">
+                            <button type="button" class="" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">
+                                <img style="filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));" src="https://icons-for-free.com/iconfiles/png/512/chat+icon-1320184411998302345.png" alt="" style="width: 80px; height:80px;"></button>
+
+
+                        </div>
+
+                        <div class="modal" id="exampleModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Query Section</h4>
+                                        <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="sendquery.php">
+                                            <div style="margin-bottom: 12px;">
+                                                <label for="">Select Query Subject</label>
+                                                <input type="text" class="form-control" value="1">
+                                            </div>
+                                            <div style="margin-bottom: 12px;">
+                                                <label for="">Enter your Query</label>
+                                                <textarea type="text" class="form-control"></textarea>
+                                            </div>
+                                            <button class="btn btn-primary">Send Query</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
 
                         <!-- <ul class="social-icon">
 

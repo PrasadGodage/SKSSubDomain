@@ -15,7 +15,7 @@ if (isset($_SESSION['username'])) {
   } else {
     $CustOutstanding = 0;
   }
-  
+
   //----------------------------------------------------------------------------
   $sqlC = "SELECT sum(`Balance`) AS SuppOutStanding FROM Supplier ";
 
@@ -65,6 +65,13 @@ if (isset($_SESSION['username'])) {
   <?php include './header1.php'; ?>
 
   <link href="cust_css/ourclient-style.css" rel="stylesheet" />
+  <style>
+    .modal-header {
+      background: teal;
+      color: #fff;
+
+    }
+  </style>
 </head>
 
 <body>
@@ -104,7 +111,7 @@ if (isset($_SESSION['username'])) {
             <div class="form-group">
               <label class="col-xs-4"><a href="Outstanding.php">Customer Outstanding</a></label>
               <div class="col-xs-4">
-                <input type="text" class="form-control" id="CustOutstanding" value="<?php echo $CustOutstanding; ?>" style="font-weight: bolder; " />
+                <input type="text" class="form-control" id="CustOutstanding" value="<?php echo $CustOutstanding; ?>" style="font-weight: bolder">
               </div>
             </div>
           </form>
@@ -115,7 +122,7 @@ if (isset($_SESSION['username'])) {
           <form class="form-horizontal" style="margin-top:80px;">
             <CENTER>
               <h3><B>STOCK</B></h3><BR>
-              <button type="button"><a href="Stock.php">STOCK STATMENT</a></button> <br>
+              <button type="button"><a href="Stock.php">STOCK STATMENT</a></button><br>
             </CENTER>
             <div class="form-group">
               <label class="col-xs-4">Quantity Stk</label>
@@ -133,7 +140,7 @@ if (isset($_SESSION['username'])) {
               <CENTER style="margin-bottom: 10px;">
                 <label>Sales Valuation</label> <br>
               </CENTER>
-              <label class="col-xs-4">MRP Rate </label>
+              <label class="col-xs-4">MRP Rate</label>
               <div class="col-xs-4">
                 <input type="text" class="form-control" id="txt_MRP" value="<?php echo $TotMRP; ?>" style="font-weight: bolder; " />
               </div>
@@ -141,7 +148,7 @@ if (isset($_SESSION['username'])) {
             <div class="form-group">
               <label class="col-xs-4" style="color: green;">Cash Rate</label>
               <div class="col-xs-4">
-                <input type="text" class="form-control" id="txt_Cash" value="<?php echo $TotCash; ?>" style="color: green; font-weight: bolder; " />
+                <input type="text" class="form-control" id="txt_Cash" value="<?php echo $TotCash; ?>" style="color: green; font-weight: bolder; "/>
               </div>
 
             </div>
@@ -158,9 +165,14 @@ if (isset($_SESSION['username'])) {
               </div>
             </div>
           </form>
-        </div>
 
+        </div>
       </div>
+    </div>
+    </div>
+
+    </div>
+
 
   </section>
 
@@ -178,8 +190,6 @@ if (isset($_SESSION['username'])) {
 
 <script>
   $('#contact-form').on('submit', function(e) {
-
-
 
     e.preventDefault();
 

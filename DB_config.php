@@ -12,8 +12,8 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 
-// $dbname = "soulsoftin_Web_SksCustomer";
-$dbname = "soulsoftin_SKS_Prasad";
+$dbname = "soulsoftin_Web_SksCustomer";
+// $dbname = "soulsoftin_SKS_Prasad";
 
 // $con = mysqli_connect($servername, $username, $password);
 

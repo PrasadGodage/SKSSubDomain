@@ -8,7 +8,7 @@ $records  = null;
 
 extract($_GET);
 
-if (isset($_GET['db_name']))
+if (isset($_GET['db_name'])) 
 
 	$conn = mysqli_connect($host_name, $user_name, $password, $db_name) or die(mysqli_connect_error());
 mysqli_set_charset($conn, 'utf8');

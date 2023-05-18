@@ -5,37 +5,23 @@ include "DBConn.php";
 mysqli_set_charset($conn, 'utf8');
 $response = null;
 $records  = null;
-extract($_POST);
-// Only for Api Checking
-$check = true;
+extract($_GET);
 
-if (isset($_POST['username']) && isset($_POST['password']) &&  isset($_POST['DBNAME'])) {
-	
-	mysqli_connect($host_name, $user_name, $password, $db_name) or die(mysqli_connect_error());
-	// if ($check) {
-	$user = $_POST['username'];
-	$password = $_POST['password'];
 
-	$sql = "SELECT * FROM 
-	webcustomer WHERE User_name = '$user' AND Password= '$password'";
-	// -- webcustomer WHERE User_name = 'Sai' AND Password= 'Balaji'";
+if (isset($_GET['username']) && isset($_GET['password'])) {
+	$user = $_GET['username'];
+	$password = $_GET['password'];
+
+	$sql = "SELECT * FROM webcustomer WHERE User_name = '$user' AND Password= '$password'";
 
 	$loginQuery = mysqli_query($conn, $sql);
 
 	if ($loginQuery != null) {
 		$loginAffected = mysqli_num_rows($loginQuery);
-		
+
 		if ($loginAffected > 0) {
 			$rows = mysqli_fetch_assoc($loginQuery);
 			$records = $rows;
-			
-			
-			// $_SESSION['username'] = "Sai";
-			$_SESSION['username'] =$user;
-			$_SESSION['id'] = $rows['ID'];
-			$_SESSION['ShopName'] = $rows['Shopname'];
-			$_SESSION['DBName'] = $rows['WebDBName'];
-			// $Subdomain= $rows['Subdomain'];
 
 			$response = array(
 				'Message' => "Login successfully",
@@ -63,11 +49,58 @@ if (isset($_POST['username']) && isset($_POST['password']) &&  isset($_POST['DBN
 
 mysqli_close($conn);
 exit(json_encode($response));
+	
 
+	
 
+// 	// if ($check) {
+// 	$user = $_POST['username'];
+// 	$password = $_POST['password'];
 
+// 	$sql = "SELECT * FROM 
+// 	webcustomer WHERE User_name = '$user' AND Password= '$password'";
+// 	// -- webcustomer WHERE User_name = 'Sai' AND Password= 'Balaji'";
 
+// 	$loginQuery = mysqli_query($conn, $sql);
 
+// 	if ($loginQuery != null) {
+// 		$loginAffected = mysqli_num_rows($loginQuery);
+		
+// 		if ($loginAffected > 0) {
+// 			$rows = mysqli_fetch_assoc($loginQuery);
+// 			$records = $rows;
+			
+			
+// 			// $_SESSION['username'] = "Sai";
+// 			$_SESSION['username'] =$user;
+// 			$_SESSION['id'] = $rows['ID'];
+// 			$_SESSION['ShopName'] = $rows['Shopname'];
+// 			$_SESSION['DBName'] = $rows['WebDBName'];
+// 			// $Subdomain= $rows['Subdomain'];
 
+// 			$response = array(
+// 				'Message' => "Login successfully",
+// 				'Responsecode' => 200,
+// 				'Data' => $records
+// 			);
+// 		} else {
+// 			$response = array(
+// 				'Message' => "Invalid user/ No user found!",
+// 				'Responsecode' => 500
+// 			);
+// 		}
+// 	} else {
+// 		$response = array(
+// 			'Message' => mysqli_error($conn),
+// 			'Responsecode' => 500
+// 		);
+// 	}
+// } else {
+// 	$response = array(
+// 		'Message' => "Parameter Missing!",
+// 		'Responsecode' => 402
+// 	);
+// }
 
-
+// mysqli_close($conn);
+// exit(json_encode($response));

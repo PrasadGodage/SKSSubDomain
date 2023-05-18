@@ -1,8 +1,8 @@
 <?php
 if (isset($_SERVER['HTTPS'])) {
-    $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+     $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
 } else {
-    $protocol = 'http';
+     $protocol = 'http';
 }
 $base_url = $protocol . "://" . $_SERVER['SERVER_NAME'] . '/' . (explode('/', $_SERVER['PHP_SELF'])[1]) . '/';
 ?>
@@ -264,7 +264,7 @@ if ($_SESSION['username'] == "") {
                     </table>
 
                </div>
-               <a class="thm-btn" href="Dashboard_SKS.php" style="transition: none 0s ease 0s; line-height: 20px; border-width: 0px; margin: 0px; padding: 20px 38px; letter-spacing: 0px; font-weight: 400; font-size: 14px;">GOTO
+               <a class="thm-btn" href="Dashboard_SKS.php" style="transition: none 0s ease 0s; line-height: 20px; border-width: 0px; margin: 0px; padding: 20px 38px; letter-spacing: 0px; font-weight: 400; font-size: 14px; margin-top: 12px; margin-bottom: 12px;">GOTO
                     DASHBOARD</a>
           </div>
 
@@ -290,7 +290,7 @@ if ($_SESSION['username'] == "") {
                          <h4 class="mb-0 text-center"><b><?php echo $new_date; ?></b></h4>
                          <h4 class="mb-0 text-center"><b><?php echo  $_SESSION['ShopName']; ?></b></h4>
                          <div class="mb-0 text-center"><b>as of</b></div>
-                         <!-- <div class="mb-0 text-center"><b><?= date("F d, Y", strtotime($date)) ?></b></div> -->
+                         <div class="mb-0 text-center"><b><?= date("F d, Y", strtotime($date)) ?></b></div>
 
                     </div>
                     <hr>

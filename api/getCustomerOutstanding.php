@@ -34,7 +34,17 @@ if ($loginQuery != null) {
 			'Responsecode' => 200,
 			'Data' => $records
 		);
+	} else {
+		$response = array(
+			// 'Message' => "Invalid user/ No user found!",
+			'Responsecode' => 500
+		);
 	}
+} else {
+	$response = array(
+		'Message' => "Parameter Missing!",
+		'Responsecode' => 402
+	);
 }
 
 
