@@ -199,6 +199,11 @@
                                     <div class="modal-body">
                                         <form action="sendquery.php">
                                             <div style="margin-bottom: 12px;">
+                                            <?php 
+                                            // $q = "SELECT * FROM `queryheads`";
+                                            // $rowcount = mysqli_num_rows($q)
+                                            
+                                            ?>
                                                 <label for="">Select Query Subject</label>
                                                 <input type="text" class="form-control" value="1">
                                             </div>

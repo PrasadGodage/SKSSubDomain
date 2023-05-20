@@ -81,7 +81,7 @@ if (isset($_SESSION['username'])) {
         <h3 style="color: white;"><span style="text-transform:uppercase;"> <?php echo  $_SESSION['ShopName']; ?></span></h3>
         <h4 style="color: white; margin-bottom: 20px; "><?php echo  $_SESSION['Address']; ?> </h4>
         <h4 style="color: white; margin-bottom: 20px; ">Mobile No - <?php echo  $_SESSION['Mobile']; ?> </h4>
-        <h5 style="font-weight:bolder;color: #d0d8f1;">SHETKARI KRUSHI SOFTWARE </h5>
+        <h5 style="font-weight:bolder;color: #d0d8f1;">SHETKARI KRUSHI SOFTWARE</h5>
 
       </div>
     </div>
@@ -122,7 +122,7 @@ if (isset($_SESSION['username'])) {
           <form class="form-horizontal" style="margin-top:80px;">
             <CENTER>
               <h3><B>STOCK</B></h3><BR>
-              <button type="button"><a href="Stock.php">STOCK STATMENT</a></button><br>
+              <button type="button"><a href="Stock.php">STOCK STATEMENT</a></button><br>
             </CENTER>
             <div class="form-group">
               <label class="col-xs-4">Quantity Stk</label>
@@ -133,7 +133,7 @@ if (isset($_SESSION['username'])) {
             <div class="form-group">
               <label class="col-xs-4" style="color: #d33232;">Purchase Value</label>
               <div class="col-xs-4">
-                <input type="text" class="form-control" id="txt_Pur" value="<?php echo $TotPur; ?>" style="color: #d33232; font-weight: bolder;" />
+                <input type="text" class="form-control" id="txt_Pur" value="<?php echo $TotPur; ?>" style="color: #d33232; font-weight:bolder;" />
               </div>
             </div>
             <div class="form-group">
@@ -148,7 +148,7 @@ if (isset($_SESSION['username'])) {
             <div class="form-group">
               <label class="col-xs-4" style="color: green;">Cash Rate</label>
               <div class="col-xs-4">
-                <input type="text" class="form-control" id="txt_Cash" value="<?php echo $TotCash; ?>" style="color: green; font-weight: bolder; "/>
+                <input type="text" class="form-control" id="txt_Cash" value="<?php echo $TotCash; ?>" style="color: green; font-weight: bolder; " />
               </div>
 
             </div>

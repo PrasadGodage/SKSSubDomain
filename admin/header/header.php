@@ -54,6 +54,8 @@ if ($_SESSION['username'] == "") {
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
@@ -129,6 +131,11 @@ if ($_SESSION['username'] == "") {
                     <div data-i18n="Text Divider">Add Customer</div>
                   </a>
                 </li>
+                <li class="menu-item">
+                  <a href="AMC_Customer.php" class="menu-link">
+                    <div data-i18n="Text Divider">Only AMC Customer</div>
+                  </a>
+                </li>
               </ul>
             </li>
             <li class="menu-item">
@@ -161,8 +168,8 @@ if ($_SESSION['username'] == "") {
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="extended-ui-text-divider.html" class="menu-link">
-                    <div data-i18n="Text Divider">Text Divider</div>
+                  <a href="AddQueryHeads.php" class="menu-link">
+                    <div data-i18n="Text Divider">Add Query Heads</div>
                   </a>
                 </li>
               </ul>
@@ -186,27 +193,71 @@ if ($_SESSION['username'] == "") {
                   <div class="card mb-4">
                     <div class="d-flex align-items-end row">
                       <div class="col-sm-12">
-                        <div class="d-flex card-body justify-content-between">
+                        <div class="d-flex card-body justify-content-between align-items-center">
                           <h4 > Welcome <strong class="text-primary"><?php echo $_SESSION['adminName']; ?></strong> as a Admin</h4>
 
 
-                          <a class="menu-item menu-toggle hide-arrow" style="width: 12px;"><i class='bx bx-menu'></i>
+                          
+                          <div class="dropdown" style="margin-right: 24px;">
+                          <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                            Profile
+                          </button>
+                          
+                          <div class="dropdown-menu">
+  
                         
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                          <li>
-                          <a class="dropdown-item" href="#">
-                           <span class="align-middle">My Profile</span>
-                          </a>
-                          </li>
+                        
+                            <!-- Button to trigger the modal -->
+<button type="button" class="dropdown-item" data-toggle="modal" data-target="#changePasswordModal">
+  Change Password
+</button>
 
-                        </ul>
-                        </div>
-                      </div>
-                      
-                    </div>
-                  </div>
-                </div>
+
+
+
+
+
+<!-- <button class="dropdown-item" type="button"></button> -->
+<button class="dropdown-item" type="button"><a href="./logout.php">Logout</a></button>
+</div>
+</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="currentPassword">Current Password</label>
+            <input type="password" class="form-control" id="currentPassword" required>
+          </div>
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input type="password" class="form-control" id="newPassword" required>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm New Password</label>
+            <input type="password" class="form-control" id="confirmPassword" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+                        
                 
                 
                 
@@ -216,6 +267,9 @@ if ($_SESSION['username'] == "") {
                    
                
               
+            <!-- </div> -->
+            </div>
+            </div>
             </div>
             
 
@@ -223,6 +277,9 @@ if ($_SESSION['username'] == "") {
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
     <script src="../assets/vendor/libs/jquery/jquery.js"></script>
     <script src="../assets/vendor/libs/popper/popper.js"></script>
     <script src="../assets/vendor/js/bootstrap.js"></script>
