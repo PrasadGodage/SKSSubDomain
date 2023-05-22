@@ -235,18 +235,18 @@ if ($_SESSION['username'] == "") {
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="changePasswordForm">
           <div class="form-group">
             <label for="currentPassword">Current Password</label>
-            <input type="password" class="form-control" id="currentPassword" required>
+            <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
           </div>
           <div class="form-group">
             <label for="newPassword">New Password</label>
-            <input type="password" class="form-control" id="newPassword" required>
+            <input type="password" class="form-control" id="newPassword" name="newPassword" required>
           </div>
           <div class="form-group">
             <label for="confirmPassword">Confirm New Password</label>
-            <input type="password" class="form-control" id="confirmPassword" required>
+            <input type="password" class="form-control" id="" required>
           </div>
         </form>
       </div>
@@ -254,6 +254,7 @@ if ($_SESSION['username'] == "") {
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save Changes</button>
       </div>
+      <div id="message"></div>
     </div>
   </div>
 </div>
@@ -299,5 +300,38 @@ if ($_SESSION['username'] == "") {
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+    <!-- Ajax for change password -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#changePasswordForm').submit(function(e) {
+    e.preventDefault(); // Prevent form submission
+
+    // Get form values
+    var oldPassword = $('#oldPassword').val();
+    var newPassword = $('#newPassword').val();
+
+    // Create data object
+    var data = {
+      oldPassword: oldPassword,
+      newPassword: newPassword
+    };
+
+    // Send AJAX request
+    $.ajax({
+      type: 'POST',
+      url: 'backend_changePassword.php',
+      data: data,
+      success: function(response) {
+        $('#message').html(response);
+      }
+    });
+  });
+});
+</script>
   </body>
 </html>
