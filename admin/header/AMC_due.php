@@ -4,9 +4,9 @@ include('./header.php');
 ?>
 
 <div class="card">
-  <h5 class="card-header">AMC Collection</h5>
+  <h4 class="card-header">AMC Due</h4>
   <div class="table-responsive text-nowrap">
-    <table class="table">
+    <table class="table table-bordered mx-4">
       <thead>
         <tr>
           <th>Customer ID</th>
@@ -49,8 +49,9 @@ include('./header.php');
                 </a>
               </td>
 
-              <td><a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=8055768679 &text=प्रिय ग्राहक, आपली  Renewal Date<?php echo $row["AMC_Date"]; ?> हि आहे. कृपया आपली रु. <?php echo $row["AMC_Amt"]; ?> दि. <?php echo $row["AMC_Date"]; ?> च्या अगोदर जमा करावी. हि विनंती - SOULSOFT INFOTECH PVT LTD. 8055798679">WhatsApp</a></td>
-              
+              <td><a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=8055768679 &text=प्रिय ग्राहक, आपली  Renewal Date<?php echo $row["AMC_Date"]; ?> हि आहे. कृपया आपली रु. <?php echo $row["AMC_Amt"]; ?> दि. <?php echo $row["AMC_Date"]; ?> च्या अगोदर जमा करावी. हि विनंती - SOULSOFT INFOTECH PVT LTD. 8055798679">WhatsApp</a>
+              </td>
+
               <!-- <td><a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=<?php echo $row["Mobile"]; ?> &text=प्रिय ग्राहक, आपली  Renewal Date<?php echo $row["AMC_Date"]; ?> हि आहे. कृपया आपली रु. <?php echo $row["AMC_Amt"]; ?> दि. <?php echo $row["AMC_Date"]; ?> च्या अगोदर जमा करावी. हि विनंती - SOULSOFT INFOTECH PVT LTD. 8055798679">WhatsApp</a></td> -->
             </tr>
 

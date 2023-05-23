@@ -7,7 +7,7 @@ include('./header.php');
 <div class="card">
 	<h5 class="card-header">Web Customers</h5>
 	<div class="table-responsive text-nowrap">
-		<table class="table table-bordered mx-4">
+		<table class="table table-bordered m-4">
 			<thead>
 				<tr>
 
