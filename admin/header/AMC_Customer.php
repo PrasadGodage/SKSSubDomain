@@ -19,7 +19,7 @@ include('./header.php');
 					<th class="text-primary col-2"> <strong>AMC Date</strong> </th>
 					<th class="text-primary"> <strong>AMC Amount</strong> </th>
 					<th class="text-primary"> <strong>Customer Name</strong> </th>
-					<th class="text-primary"> <strong>Shop Name</strong> </th>
+					<th class="text-primary"> <strong>Shop Name</strong></th>
 					<th class="text-primary"> <strong>Contact No</strong> </th>
 					<th class="text-primary"> <strong>Address</strong> </th>
 					<th class="text-primary"> <strong>Installation Date</strong></th>
@@ -53,13 +53,10 @@ include('./header.php');
 							<td><?php echo $row['Install_date']; ?></td>
 						</tr>
 
-
-
-
-
 				<?php
 					}
 				} else {
+          
 				}
 				// while($){}
 

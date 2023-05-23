@@ -1,6 +1,6 @@
 <?php
 include 'DB_config.php';
-mysqli_select_db($con,  $_SESSION['DBName']);
+mysqli_select_db($con,$_SESSION['DBName']);
 if ($_SESSION['username'] == "") {
   header("location:../logout.php");
 }
@@ -30,7 +30,7 @@ if (isset($_SESSION['username'])) {
 
 
   //----------------------------------------------------------------------------
-  $sqlC = "SELECT sum(`StkQty`)As TotQty,sum(`PurchaseValue`)As TotPur,sum(`MRPValue`)As TotMRP,sum(`CashValue`)As TotCash,sum(`CreditValue`)As TotCredit,sum(`OutletValue`)As TotOut FROM Stock ";
+  $sqlC = "SELECT sum(`StkQty`)As TotQty,sum(`PurchaseValue`)As TotPur,sum(`MRPValue`)As TotMRP,sum(`CashValue`)As TotCash,sum(`CreditValue`)As TotCredit,sum(`OutletValue`)As TotOut FROM Stock";
 
   $result = mysqli_query($con, $sqlC);
   $rows = mysqli_fetch_assoc($result);
@@ -115,6 +115,36 @@ if (isset($_SESSION['username'])) {
               </div>
             </div>
           </form>
+
+          <form class="form-horizontal" style="margin-top:70px;">
+            <CENTER>
+              <h3><B>PROFIT</B></h3>
+            </CENTER><BR><BR><br>
+            <div class="form-group">
+              <label class="col-xs-4"><a href="SupplierOutstanding.php">Available Stocks Profit</a></label>
+
+              <?php  
+              $sqlC = "SELECT sum(`CashValue`)AS cash, sum(`PurchaseValue`)AS purchase FROM Stock";
+
+                    $result = mysqli_query($con, $sqlC);
+                    $rows = mysqli_fetch_assoc($result);
+
+                    if (mysqli_num_rows($result) == 1) {
+                      $cash = $rows['cash'];
+                      $purchase = $rows['purchase'];
+                      $profit = $cash - $purchase;
+                    } else {
+                      $SuppOutstanding = 0;
+                    }
+ ?>
+
+              <div class="col-xs-4">
+                <input type="text" class="form-control" id="SuppOutstanding" value="<?php echo $profit; ?>" style="font-weight: bolder; " />
+              </div>
+            </div>
+          </form>
+
+
         </div>
 
 

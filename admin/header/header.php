@@ -81,6 +81,8 @@ if ($_SESSION['username'] == "") {
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
+
+
         <!-- Menu -->
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
@@ -123,17 +125,13 @@ if ($_SESSION['username'] == "") {
               <ul class="menu-sub">
                 <li class="menu-item">
                   <a href="All_Customers.php" class="menu-link">
-                    <div data-i18n="Perfect Scrollbar">Web Customer</div>
+                    <div data-i18n="Perfect Scrollbar">Customers (Web Portal)</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a href="Add_Customer.php" class="menu-link">
-                    <div data-i18n="Text Divider">Add Customer</div>
-                  </a>
-                </li>
+               
                 <li class="menu-item">
                   <a href="AMC_Customer.php" class="menu-link">
-                    <div data-i18n="Text Divider">Only AMC Customer</div>
+                    <div data-i18n="Text Divider">Customers (POS Only)</div>
                   </a>
                 </li>
               </ul>
@@ -145,13 +143,18 @@ if ($_SESSION['username'] == "") {
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="./AMC_Collection.php" class="menu-link">
-                    <div data-i18n="Perfect Scrollbar">AMC Collection</div>
+                  <a href="./AMC_due.php" class="menu-link">
+                    <div data-i18n="Perfect Scrollbar">AMC Due</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="extended-ui-text-divider.html" class="menu-link">
-                    <div data-i18n="Text Divider">Text Divider</div>
+                  <a href="AMC_Collection_Report.php" class="menu-link">
+                    <div data-i18n="Text Divider">AMC Collection Report</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="AMC_Report.php" class="menu-link">
+                    <div data-i18n="Text Divider">AMC Report</div>
                   </a>
                 </li>
               </ul>
@@ -159,17 +162,17 @@ if ($_SESSION['username'] == "") {
             <li class="menu-item">
               <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-chat"></i>
-                <div data-i18n="Extended UI">Query Section</div>
+                <div data-i18n="Extended UI">Customer Services</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
                   <a href="PendingQueries.php" class="menu-link">
-                    <div data-i18n="Perfect Scrollbar">Pending Queries</div>
+                    <div data-i18n="Perfect Scrollbar">Ticket Section</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a href="AddQueryHeads.php" class="menu-link">
-                    <div data-i18n="Text Divider">Add Query Heads</div>
+                    <div data-i18n="Text Divider">Add ticket heads</div>
                   </a>
                 </li>
               </ul>
@@ -185,6 +188,8 @@ if ($_SESSION['username'] == "") {
         <div class="layout-page">
           
           <div class="content-wrapper">
+
+      
            
 
             <div class="container-xxl flex-grow-1 container-p-y">
@@ -194,6 +199,14 @@ if ($_SESSION['username'] == "") {
                     <div class="d-flex align-items-end row">
                       <div class="col-sm-12">
                         <div class="d-flex card-body justify-content-between align-items-center">
+
+
+                        <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div>
+
                           <h4 > Welcome <strong class="text-primary"><?php echo $_SESSION['adminName']; ?></strong> as a Admin</h4>
 
 
@@ -235,7 +248,7 @@ if ($_SESSION['username'] == "") {
         </button>
       </div>
       <div class="modal-body">
-        <form id="changePasswordForm">
+        <form action="backend_changePassword.php" method="POST">
           <div class="form-group">
             <label for="currentPassword">Current Password</label>
             <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
@@ -248,11 +261,11 @@ if ($_SESSION['username'] == "") {
             <label for="confirmPassword">Confirm New Password</label>
             <input type="password" class="form-control" id="" required>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save Changes</button>
       </div>
       <div id="message"></div>
     </div>
@@ -306,32 +319,6 @@ if ($_SESSION['username'] == "") {
     <!-- Ajax for change password -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-  $('#changePasswordForm').submit(function(e) {
-    e.preventDefault(); // Prevent form submission
 
-    // Get form values
-    var oldPassword = $('#oldPassword').val();
-    var newPassword = $('#newPassword').val();
-
-    // Create data object
-    var data = {
-      oldPassword: oldPassword,
-      newPassword: newPassword
-    };
-
-    // Send AJAX request
-    $.ajax({
-      type: 'POST',
-      url: 'backend_changePassword.php',
-      data: data,
-      success: function(response) {
-        $('#message').html(response);
-      }
-    });
-  });
-});
-</script>
   </body>
 </html>

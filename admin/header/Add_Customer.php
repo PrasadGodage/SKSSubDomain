@@ -21,16 +21,16 @@ include('./header.php');
 					</div>
 					<div class="mb-3">
 						<label class="form-label" for="basic-default-email">Shopname</label>
-						<input type="text" class="form-control" name="shopname"  />
+						<input type="text" class="form-control" name="shopname" />
 						
 					</div>
 					<div class="mb-3">
 						<label class="form-label" for="basic-default-phone">Mobile No</label>
-						<input type="number" class="form-control phone-mask" name="mobNum" />
+						<input type="number" class="form-control phone-mask" name= "mobNum" />
 					</div>
 					<div class="mb-3">
 						<label class="form-label" for="basic-default-message">Contact Person Name</label>
-						<input type="text" name="person" class="form-control phone-mask"  />
+						<input type="text" name="person" class="form-control phone-mask" />
 						
 					</div>
 					<div class="mb-3">
