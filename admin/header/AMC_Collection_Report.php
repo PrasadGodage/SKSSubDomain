@@ -1,74 +1,103 @@
 <?php
 include('./header.php');
+
 ?>
 
 <div class="card">
-	<h5 class="card-header">AMC Collection Report Only (Paid Customers)</h5>
+	<div class="container">
+		<div class="col-md-12 col-sm-12 col-xs-12" style="padding:20px;">
+			<form class="form-horizontal" style="margin-left:20px;" method="post">
+				<CENTER>
+					<h2><B>AMC COLLECTION REPORT (PAID ONLY)</B></h2>
+				</CENTER><BR>
+
+				<div class="d-flex align-items-center justify-content-center">
+					<input class="date form-control" style="width: 170px;font-size: 17px;" type="date" id="fromdate" name="fromdate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>
+					<strong class="mx-3">to</strong>
+					<input class="date form-control" style="width: 170px;font-size: 17px;" type="date" id="todate" name="todate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>
+					<input style="font-size: 17px;" type="submit" name="data" class="btn btn-primary btn-sm mx-3" value="Search">
+				</div>
+
+
+
+			</form>
+		</div>
+	</div>
+
+
+
+	<?php
+	if (isset($_POST['data'])) {
+
+		$fromTimestamp = date('Y-m-d', strtotime($_POST['fromdate']));
+		$toTimestamp = date('Y-m-d', strtotime($_POST['todate']));
+
+		$query = "SELECT *
+		FROM onlyamccustomer
+		WHERE Amc_date >='$fromTimestamp' AND Amc_date <= '$toTimestamp' AND status = 0";
+
+
+		$result = mysqli_query($con, $query);
+	}
+
+
+
+	?>
 
 	<div class="table-responsive text-nowrap">
-		<table class="table table-bordered mx-4">
+		<table class="table table-bordered mx-4" id="customer_data">
 			<thead>
 				<tr>
 					<th>Customer ID</th>
 
-					<th>Shopname</th>
+					<th>Shop name</th>
+					<th>Customer name</th>
 					<th>AMC Date</th>
 					<th>AMC Amount</th>
 
 					<th>Installation Date</th>
-					<th>Status</th>
-					<th>WhatsApp Message</th>
+
 				</tr>
 			</thead>
-			<tbody class="table-border-bottom-0">
-				<?php
+			<!-- <tbody class="table-border-bottom-0">
 
-				// 		$selectnewusers = "SELECT *
-				// FROM webcustomer
-				// WHERE `AMC_Date` >= CURDATE() AND `AMC_Date` <= DATE_ADD(CURDATE(), INTERVAL 7 DAY);";
+				</tbody> -->
 
-				$selectnewusers = "SELECT * FROM onlyamccustomer
-					WHERE Amc_date <= CURDATE() AND status = 1";
+			<?php
 
-				// perform query against database in php
-				$result = mysqli_query($con, $selectnewusers);
+			$i = 0;
+
+			while ($row = mysqli_fetch_array($result)) {
+
+				echo '
+
+<tr id="Table_Row">
+
+<td>' . $row["id"] . '</td>
+
+<td>' . $row["ShopName"] . '</td>
+
+<td>' . $row["CustomerName"] . '</td>
+
+<td>' . $row["Amc_date"] . '</td>
+
+<td>' . $row["Amc_amt"] . '</td>
+
+<td>' . $row["Install_date"] . '</td>
+
+</tr>
 
 
-
-				// mysqli count rows in data base
-				if (mysqli_num_rows($result) > 0) {
-					while ($row = mysqli_fetch_assoc($result)) { ?>
-						<tr>
-							<th><?php echo $row['id']; ?></th>
-							<td><?php echo $row['ShopName']; ?></td>
-
-							<td><?php echo $row['Amc_date']; ?></td>
-							<td><?php echo $row['Amc_amt']; ?></td>
-							<td><?php echo $row['Install_date']; ?></td>
-							<td>
-								<a class="btn btn-primary" href="sms:<?php echo $row['Mobile']; ?>">SMS</a>
-							</td>
-
-							<td><a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=<?php echo $row['Mobile']; ?>  &text=प्रिय ग्राहक, आपली  Renewal Date<?php echo $row["AMC_Date"]; ?> हि आहे. कृपया आपली रु. <?php echo $row["AMC_Amt"]; ?> दि. <?php echo $row["AMC_Date"]; ?> च्या अगोदर जमा करावी. हि विनंती - SOULSOFT INFOTECH PVT LTD. 8055798679">WhatsApp</a>
-							</td>
-
-							<!-- <td><a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=<?php echo $row["Mobile"]; ?> &text=प्रिय ग्राहक, आपली  Renewal Date<?php echo $row["AMC_Date"]; ?> हि आहे. कृपया आपली रु. <?php echo $row["AMC_Amt"]; ?> दि. <?php echo $row["AMC_Date"]; ?> च्या अगोदर जमा करावी. हि विनंती - SOULSOFT INFOTECH PVT LTD. 8055798679">WhatsApp</a></td> -->
-						</tr>
+';
+			}
+			?>
 
 
 
-				<?php
-					}
-				} else {
-				}
-				// while($){}
 
 
 
-				?>
 
-
-			</tbody>
 		</table>
 	</div>
 </div>

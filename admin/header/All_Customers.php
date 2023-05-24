@@ -25,7 +25,7 @@ include('./header.php');
 			<tbody class="table-border-bottom-0">
 				<?php
 
-				$selectnewusers = "SELECT * FROM `webcustomer`";
+				$selectnewusers = "SELECT * ,DATE_FORMAT(AMC_Date, '%d-%m-%Y') AS amcDate,DATE_FORMAT(Install_Date, '%d-%m-%Y') AS insDate FROM `webcustomer` WHERE 1";
 
 
 
@@ -36,15 +36,16 @@ include('./header.php');
 
 				// mysqli count rows in data base
 				if (mysqli_num_rows($result) > 0) {
+
 					while ($row = mysqli_fetch_assoc($result)) { ?>
 						<tr>
 							<td><?php echo $row['ID']; ?></td>
-							<td><?php echo $row['AMC_Date']; ?></td>
+							<td><?php echo $row['amcDate']; ?></td>
 							<td><?php echo $row['AMC_Amt']; ?></td>
 							<td><?php echo $row['Contact_PersonName']; ?></td>
 							<td><?php echo $row['Contact_PersonMobile']; ?></td>
 							<td><?php echo $row['Address']; ?></td>
-							<td><?php echo $row['Install_Date']; ?></td>
+							<td><?php echo $row['insDate']; ?></td>
 						</tr>
 
 

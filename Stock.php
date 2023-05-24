@@ -10,26 +10,27 @@ if ($_SESSION['username'] == "") {
 <html lang="en">
 
 <head>
-     <meta charset="UTF-8">
+	<meta charset="UTF-8">
 
-     <title>Soulsoft || SKS</title>
+	<title>Soulsoft || SKS</title>
 
-     <?php include './header1.php'; ?>
-     <link href="css/ourclient-style.css" rel="stylesheet" />
+	<?php include './header1.php'; ?>
+	<link href="css/ourclient-style.css" rel="stylesheet" />
 
 <body>
-     <section class="service sec-padd2" style="background-color: #203364;padding: 20px 0 0px;margin-bottom: 10px;">
-          <div class="container">
-               <div class="section-title center" style="margin-bottom: 20px;">
-                    <h3 style="color: white;"><span style="text-transform:uppercase;"> <?php echo  $_SESSION['ShopName']; ?></span></h3>
-                    <h5 style="font-weight:bolder;color: #d0d8f1;">SHETKARI KRUSHI SOFTWARE </h5>
+	<section class="service sec-padd2" style="background-color: #203364;padding: 20px 0 0px;margin-bottom: 10px;">
+		<div class="container">
+			<div class="section-title center" style="margin-bottom: 20px;">
+				<h3 style="color: white;"><span style="text-transform:uppercase;">
+						<?php echo  $_SESSION['ShopName']; ?></span></h3>
+				<h5 style="font-weight:bolder;color: #d0d8f1;">SHETKARI KRUSHI SOFTWARE </h5>
 
-               </div>
-          </div>
-     </section>
+			</div>
+		</div>
+	</section>
 
 
-     <?php
+	<?php
 
      $query = "SELECT * FROM Stock ORDER BY ItemName ASC";
 
@@ -39,8 +40,8 @@ if ($_SESSION['username'] == "") {
 
 
 
-     <title>Stock</title>
-     <!--
+	<title>Stock</title>
+	<!--
                <meta charset="utf-8">
                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -60,45 +61,46 @@ if ($_SESSION['username'] == "") {
                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 -->
-     </head>
+	</head>
 
 
-     <body>
+	<body>
 
-          <br /><br />
+		<br /><br />
 
-          <div class="container">
-               <h1 align="center">STOCK STATMENT</h3>
-                    <br />
-                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-                    <!--<input type="checkbox" Id="SelectAll"><label style=" font-size: 12px;margin-right: 10px;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;">SELECT ALL</label>
+		<div class="container">
+			<h1 align="center">STOCK STATMENT</h3>
+				<br />
+				<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."
+					title="Type in a name">
+				<!--<input type="checkbox" Id="SelectAll"><label style=" font-size: 12px;margin-right: 10px;margin-left: 10px;margin-top: 10px;margin-bottom: 10px;">SELECT ALL</label>
                 <button type="button" class="btn btn-outline-success"><a href="Dashboard_SKS.php">GO TO DASHBOARD</a></button>-->
-                    <div class="table-responsive">
+				<div class="table-responsive">
 
-                         <table id="customer_data" class="table table-striped table-bordered">
+					<table id="customer_data" class="table table-striped table-bordered">
 
-                              <thead style="font-weight: bolder;">
+						<thead style="font-weight: bolder;">
 
-                                   <tr>
+							<tr>
 
-                                        <td>ID</td>
-                                        <td>Name</td>
-                                        <td>Batch</td>
-                                        <td>Expiry</td>
-                                        <td>StkQty</td>
-                                        <td>Purchase Rate</td>
-                                        <td>Cash Rate</td>
-                                        <td>Credit Rate</td>
-                                        <td>MRP Rate</td>
-                                        <td>Outlet Rate</td>
+								<td>ID</td>
+								<td>Name</td>
+								<td>Batch</td>
+								<td>Expiry</td>
+								<td>StkQty</td>
+								<td>Purchase Rate</td>
+								<td>Cash Rate</td>
+								<td>Credit Rate</td>
+								<td>MRP Rate</td>
+								<td>Outlet Rate</td>
 
 
 
-                                   </tr>
+							</tr>
 
-                              </thead>
+						</thead>
 
-                              <?php
+						<?php
 
                               $i = 0;
 
@@ -136,153 +138,155 @@ if ($_SESSION['username'] == "") {
                               }
                               ?>
 
-                         </table>
+					</table>
 
-                    </div>
+				</div>
 
-                    <a class="thm-btn" href="Dashboard_SKS.php" style="transition: none 0s ease 0s; line-height: 20px; border-width: 0px; margin: 0px; padding: 20px 38px; letter-spacing: 0px; font-weight: 400; font-size: 14px;">GOTO DASHBOARD</a>
-          </div>
+				<a class="thm-btn" href="Dashboard_SKS.php"
+					style="transition: none 0s ease 0s; line-height: 20px; border-width: 0px; margin: 0px; padding: 20px 38px; letter-spacing: 0px; font-weight: 400; font-size: 14px;">GOTO
+					DASHBOARD</a>
+		</div>
 
 
 
-     </body>
+	</body>
 
 
-     <script>
-          //--------------------Script Used To Search Box-----------------------------
-          function myFunction() {
-               var input, filter, table, tr, td, i, txtValue;
+	<script>
+	//--------------------Script Used To Search Box-----------------------------
+	function myFunction() {
+		var input, filter, table, tr, td, i, txtValue;
 
-               input = document.getElementById("myInput");
+		input = document.getElementById("myInput");
 
-               filter = input.value.toUpperCase();
+		filter = input.value.toUpperCase();
 
-               table = document.getElementById("customer_data");
+		table = document.getElementById("customer_data");
 
-               tr = table.getElementsByTagName("tr");
+		tr = table.getElementsByTagName("tr");
 
-               for (i = 1; i < tr.length; i++) {
+		for (i = 1; i < tr.length; i++) {
 
-                    td = tr[i].getElementsByTagName("td")[1];
-                    if (td) {
-                         txtValue = td.textContent || td.innerText;
+			td = tr[i].getElementsByTagName("td")[1];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
 
-                         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
 
-                              tr[i].style.display = "";
+					tr[i].style.display = "";
 
-                         } else {
-                              tr[i].style.display = "none";
-                         }
+				} else {
+					tr[i].style.display = "none";
+				}
 
-                    }
-               }
-          }
+			}
+		}
+	}
 
 
 
-          //------------------------Sript To used Select All----------------------------
+	//------------------------Sript To used Select All----------------------------
 
-          $(document).ready(function() {
+	$(document).ready(function() {
 
-               $('#SelectAll').change(function() {
+		$('#SelectAll').change(function() {
 
-                    if (this.checked)
+			if (this.checked)
 
-                    {
+			{
 
-                         $('.Chkbox').prop('checked', true);
+				$('.Chkbox').prop('checked', true);
 
-                    } else {
+			} else {
 
-                         $('.Chkbox').prop('checked', false);
+				$('.Chkbox').prop('checked', false);
 
-                    }
+			}
 
-               });
+		});
 
-          });
-     </script>
+	});
+	</script>
 
-     <style>
-          #SelectAll {
+	<style>
+	#SelectAll {
 
-               font-size: 12px;
+		font-size: 12px;
 
-               margin-right: 10px;
+		margin-right: 10px;
 
-               margin-left: 10px;
+		margin-left: 10px;
 
-               margin-top: 10px;
+		margin-top: 10px;
 
-               margin-bottom: 10px;
+		margin-bottom: 10px;
 
-          }
+	}
 
 
 
-          #customer_data {
+	#customer_data {
 
-               border-collapse: collapse;
+		border-collapse: collapse;
 
-               width: 100%;
+		width: 100%;
 
-               border: 1px solid #ddd;
+		border: 1px solid #ddd;
 
-               font-size: 14px;
+		font-size: 14px;
 
-          }
+	}
 
 
 
-          #customer_data th,
-          #customer_data td {
+	#customer_data th,
+	#customer_data td {
 
-               text-align: left;
+		text-align: left;
 
-               padding: 12px;
+		padding: 12px;
 
-          }
+	}
 
 
 
-          #customer_data tr {
+	#customer_data tr {
 
-               border-bottom: 1px solid #ddd;
+		border-bottom: 1px solid #ddd;
 
-          }
+	}
 
 
 
-          #customer_data tr.header,
-          #customer_data tr:hover {
+	#customer_data tr.header,
+	#customer_data tr:hover {
 
-               background-color: #f1f1f1;
+		background-color: #f1f1f1;
 
-          }
+	}
 
 
 
-          #myInput {
+	#myInput {
 
-               background-image: url('/css/searchicon.png');
+		background-image: url('/css/searchicon.png');
 
-               background-position: 10px 10px;
+		background-position: 10px 10px;
 
-               background-repeat: no-repeat;
+		background-repeat: no-repeat;
 
-               width: 100%;
+		width: 100%;
 
-               font-size: 12px;
+		font-size: 12px;
 
-               padding: 12px 20px 12px 40px;
+		padding: 12px 20px 12px 40px;
 
-               border: 1px solid #ddd;
+		border: 1px solid #ddd;
 
-               margin-bottom: 12px;
+		margin-bottom: 12px;
 
-          }
-     </style>
+	}
+	</style>
 
 
 </html>
