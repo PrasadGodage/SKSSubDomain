@@ -12,13 +12,10 @@ include('./header.php');
 				</CENTER><BR>
 
 				<div class="d-flex align-items-center justify-content-center">
-					<input class="date form-control" style="width: 170px;font-size: 17px;" type="date" id="fromdate"
-						name="fromdate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>
+					<input class="date form-control" style="width: 170px;font-size: 17px;" type="date" id="fromdate" name="fromdate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>
 					<strong class="mx-3">to</strong>
-					<input class="date form-control" style="width: 170px;font-size: 17px;" type="date" id="todate"
-						name="todate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>
-					<input style="font-size: 17px;" type="submit" name="data" class="btn btn-primary btn-sm mx-3"
-						value="Search">
+					<input class="date form-control" style="width: 170px;font-size: 17px;" type="date" id="todate" name="todate" class="form-gruop" value=<?php echo date("d-m-Y"); ?>>
+					<input style="font-size: 17px;" type="submit" name="data" class="btn btn-primary btn-sm mx-3" value="Search">
 				</div>
 
 
@@ -93,17 +90,16 @@ include('./header.php');
 
 			while ($row = mysqli_fetch_array($result)) { ?>
 
-			<tr>
-				<td><?php echo $row['id']; ?></td>
-				<td><?php echo $row['ShopName']; ?></td>
-				<td><?php echo $row['CustomerName']; ?></td>
-				<td><?php echo $row['amcDate']; ?></td>
-				<td><button
-						class="btn <?php echo getStatusColor($row['status']); ?>"><?php echo getStatusValue($row['status']); ?></button>
-				</td>
-				<td><?php echo $row['Amc_amt']; ?></td>
-				<td><?php echo $row['insDate']; ?></td>
-			</tr>
+				<tr>
+					<td><?php echo $row['id']; ?></td>
+					<td><?php echo $row['ShopName']; ?></td>
+					<td><?php echo $row['CustomerName']; ?></td>
+					<td><?php echo $row['amcDate']; ?></td>
+					<td><button class="btn <?php echo getStatusColor($row['status']); ?>"><?php echo getStatusValue($row['status']); ?></button>
+					</td>
+					<td><?php echo $row['Amc_amt']; ?></td>
+					<td><?php echo $row['insDate']; ?></td>
+				</tr>
 
 			<?php
 			}

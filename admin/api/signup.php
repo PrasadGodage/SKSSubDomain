@@ -61,5 +61,3 @@ else{
 mysqli_close($conn);
 
 exit(json_encode($response));
-
-?>
