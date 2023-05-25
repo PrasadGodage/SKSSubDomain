@@ -45,7 +45,7 @@ include('./header.php');
 							<td><?php echo $row['Contact_PersonName']; ?></td>
 							<td><?php echo $row['Contact_PersonMobile']; ?></td>
 							<td><?php echo $row['Address']; ?></td>
-							<td><?php echo $row['3 ']; ?></td>
+							<td><?php echo $row['insDate']; ?></td>
 						</tr>
 
 
