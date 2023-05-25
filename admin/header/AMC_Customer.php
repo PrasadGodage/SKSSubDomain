@@ -44,16 +44,16 @@ include('./header.php');
 				// mysqli count rows in data base
 				if (mysqli_num_rows($result) > 0) {
 					while ($row = mysqli_fetch_assoc($result)) { ?>
-				<tr>
-					<td><?php echo $row['id']; ?></td>
-					<td><?php echo $row['amcDate']; ?></td>
-					<td><?php echo $row['Amc_amt']; ?></td>
-					<td><?php echo $row['CustomerName']; ?></td>
-					<td><?php echo $row['ShopName']; ?></td>
-					<td><?php echo $row['Mobile']; ?></td>
-					<td><?php echo $row['Address']; ?></td>
-					<td><?php echo $row['insDate']; ?></td>
-				</tr>
+						<tr>
+							<td><?php echo $row['id']; ?></td>
+							<td><?php echo $row['amcDate']; ?></td>
+							<td><?php echo $row['Amc_amt']; ?></td>
+							<td><?php echo $row['CustomerName']; ?></td>
+							<td><?php echo $row['ShopName']; ?></td>
+							<td><?php echo $row['Mobile']; ?></td>
+							<td><?php echo $row['Address']; ?></td>
+							<td><?php echo $row['insDate']; ?></td>
+						</tr>
 
 				<?php
 					}
