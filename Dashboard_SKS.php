@@ -1,6 +1,6 @@
 <?php
 include 'DB_config.php';
-mysqli_select_db($con,$_SESSION['DBName']);
+mysqli_select_db($con, $_SESSION['DBName']);
 if ($_SESSION['username'] == "") {
   header("location:../logout.php");
 }
@@ -78,7 +78,8 @@ if (isset($_SESSION['username'])) {
   <section class="service sec-padd2" style="background-color: #203364;padding: 20px 0 0px;margin-bottom: 10px;">
     <div class="container">
       <div class="section-title center" style="margin-bottom: 20px;">
-        <h3 style="color: white;"><span style="text-transform:uppercase;"> <?php echo  $_SESSION['ShopName']; ?></span></h3>
+        <h3 style="color: white;"><span style="text-transform:uppercase;">
+            <?php echo  $_SESSION['ShopName']; ?></span></h3>
         <h4 style="color: white; margin-bottom: 20px; "><?php echo  $_SESSION['Address']; ?> </h4>
         <h4 style="color: white; margin-bottom: 20px; ">Mobile No - <?php echo  $_SESSION['Mobile']; ?> </h4>
         <h5 style="font-weight:bolder;color: #d0d8f1;">SHETKARI KRUSHI SOFTWARE</h5>
@@ -121,22 +122,23 @@ if (isset($_SESSION['username'])) {
               <h3><B>PROFIT</B></h3>
             </CENTER><BR><BR><br>
             <div class="form-group">
-              <label class="col-xs-4"><a href="SupplierOutstanding.php">Available Stocks Profit</a></label>
+              <label class="col-xs-4"><a href="SupplierOutstanding.php">Available Stocks
+                  Profit</a></label>
 
-              <?php  
+              <?php
               $sqlC = "SELECT sum(`CashValue`)AS cash, sum(`PurchaseValue`)AS purchase FROM Stock";
 
-                    $result = mysqli_query($con, $sqlC);
-                    $rows = mysqli_fetch_assoc($result);
+              $result = mysqli_query($con, $sqlC);
+              $rows = mysqli_fetch_assoc($result);
 
-                    if (mysqli_num_rows($result) == 1) {
-                      $cash = $rows['cash'];
-                      $purchase = $rows['purchase'];
-                      $profit = $cash - $purchase;
-                    } else {
-                      $SuppOutstanding = 0;
-                    }
- ?>
+              if (mysqli_num_rows($result) == 1) {
+                $cash = $rows['cash'];
+                $purchase = $rows['purchase'];
+                $profit = $cash - $purchase;
+              } else {
+                $SuppOutstanding = 0;
+              }
+              ?>
 
               <div class="col-xs-4">
                 <input type="text" class="form-control" id="SuppOutstanding" value="<?php echo $profit; ?>" style="font-weight: bolder; " />
@@ -178,7 +180,7 @@ if (isset($_SESSION['username'])) {
             <div class="form-group">
               <label class="col-xs-4" style="color: green;">Cash Rate</label>
               <div class="col-xs-4">
-                <input type="text" class="form-control" id="txt_Cash" value="<?php echo $TotCash; ?>" style="color: green; font-weight: bolder; " />
+                <input type="text" class="form-control" id="txt_Cash" value="<?php echo $TotCash; ?>" style="color: green; font-weight: bolder;" />
               </div>
 
             </div>

@@ -3,6 +3,19 @@ include('./header.php');
 
 ?>
 
+<?php
+$fromTimestamp = date('d-m-Y');
+$toTimestamp = date('d-m-Y');
+
+?>
+
+<script>
+	console.log("Check")
+	document.getElementById('fromdate').valueAsDate = new Date();
+
+	document.getElementById('todate').valueAsDate = new Date();
+</script>
+
 <div class="card">
 	<div class="container">
 		<div class="col-md-12 col-sm-12 col-xs-12" style="padding:20px;">
